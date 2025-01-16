@@ -15,4 +15,14 @@ For more information on Quarto, see [https://quarto.org](https://quarto.org)
 - A `quarto` installation, e.g. from  [https://quarto.org](https://quarto.org)
 - A suitable editor (e.g. VSCode)
 - An account on Github (or similar services)
+- Some knowledge of `git`
 
+
+
+## To create your website on github
+
+- Go to your repository on github (e.g. https://github.com/FTurci/minimal-quarto-lab-book)
+- Click on `Settings`
+- Click on `Pages` on the left sidebar
+- Under the section **Branch** select branch `main` and select folder `docs`
+- Commit and push your changes and you are done.

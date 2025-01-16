@@ -1,0 +1,32 @@
+[
+  {
+    "objectID": "welcome.html",
+    "href": "welcome.html",
+    "title": "1 Lab book in Quarto",
+    "section": "",
+    "text": "Quarto is a an editing platform centered on Markdown.\nYou can write down multiple kinds of interactive documents in Quarto, including websites that mix code, text, equations etc. The individual notebook can be jupyter notebooks or dedicated markdown documents.\nCombined with combined repositories such as GitHub, Quarto allows you to create a static website to collect your progress is very easily.\nFor more information on Quarto, see https://quarto.org\n\n\n\nA quarto installation, e.g. from https://quarto.org\nA suitable editor (e.g. VSCode)\nAn account on Github (or similar services)\nSome knowledge of git\n\n\n\n\n\nGo to your repository on github (e.g. https://github.com/FTurci/minimal-quarto-lab-book)\nClick on Settings\nClick on Pages on the left sidebar\nUnder the section Branch select branch main and select folder docs\nCommit and push your changes and you are done.",
+    "crumbs": [
+      "Lab book in Quarto"
+    ]
+  },
+  {
+    "objectID": "welcome.html#what-you-need",
+    "href": "welcome.html#what-you-need",
+    "title": "1 Lab book in Quarto",
+    "section": "",
+    "text": "A quarto installation, e.g. from https://quarto.org\nA suitable editor (e.g. VSCode)\nAn account on Github (or similar services)\nSome knowledge of git",
+    "crumbs": [
+      "Lab book in Quarto"
+    ]
+  },
+  {
+    "objectID": "welcome.html#to-create-your-website-on-github",
+    "href": "welcome.html#to-create-your-website-on-github",
+    "title": "1 Lab book in Quarto",
+    "section": "",
+    "text": "Go to your repository on github (e.g. https://github.com/FTurci/minimal-quarto-lab-book)\nClick on Settings\nClick on Pages on the left sidebar\nUnder the section Branch select branch main and select folder docs\nCommit and push your changes and you are done.",
+    "crumbs": [
+      "Lab book in Quarto"
+    ]
+  }
+]
