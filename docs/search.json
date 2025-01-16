@@ -24,7 +24,7 @@
     "href": "welcome.html#to-create-your-website-on-github",
     "title": "Lab book in Quarto",
     "section": "2 To create your website on github",
-    "text": "2 To create your website on github\n\nGo to your repository on github (e.g. https://github.com/FTurci/minimal-quarto-lab-book)\nClick on Settings\nClick on Pages on the left sidebar\nUnder the section Branch select branch main and select folder docs\nRender your project with quarto render\nCommit and push your changes and you are done. The website will be available under you domain (e.g., [https://fturci.github.io/minimal-quarto-lab-book/welcome.html] )",
+    "text": "2 To create your website on github\n\nGo to your repository on github (e.g. https://github.com/FTurci/minimal-quarto-lab-book)\nClick on Settings\nClick on Pages on the left sidebar\nUnder the section Branch select branch main and select folder docs\nRender your project with quarto render\nCommit and push your changes and you are done. The website will be available under you domain (e.g., https://fturci.github.io/minimal-quarto-lab-book/welcome.html )",
     "crumbs": [
       "Lab book in Quarto"
     ]

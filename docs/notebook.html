@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>welcome – Minimal Quarto Lab Book</title>
+<title>Example in jupyter – Minimal Quarto Lab Book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./welcome.html">Lab book in Quarto</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./notebook.html">Example in <code>jupyter</code></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -140,13 +140,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./welcome.html" class="sidebar-item-text sidebar-link active">
+  <a href="./welcome.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab book in Quarto</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebook.html" class="sidebar-item-text sidebar-link">
+  <a href="./notebook.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Example in <code>jupyter</code></span></a>
   </div>
 </li>
@@ -155,23 +155,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#what-you-need" id="toc-what-you-need" class="nav-link active" data-scroll-target="#what-you-need"><span class="header-section-number">1</span> What you need</a></li>
-  <li><a href="#to-create-your-website-on-github" id="toc-to-create-your-website-on-github" class="nav-link" data-scroll-target="#to-create-your-website-on-github"><span class="header-section-number">2</span> To create your website on github</a></li>
-  <li><a href="#example-of-minimal-code" id="toc-example-of-minimal-code" class="nav-link" data-scroll-target="#example-of-minimal-code"><span class="header-section-number">3</span> Example of minimal code</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab book in Quarto</h1>
+<h1 class="title">Example in <code>jupyter</code></h1>
 </div>
 
 
@@ -188,50 +180,133 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Quarto is a an editing platform centered on Markdown.</p>
-<p>You can write down multiple kinds of interactive documents in Quarto, including websites that mix code, text, equations etc. The individual notebook can be jupyter notebooks or dedicated markdown documents.</p>
-<p>Combined with combined repositories such as GitHub, Quarto allows you to create a static website to collect your progress is very easily.</p>
-<p>For more information on Quarto, see <a href="https://quarto.org">https://quarto.org</a></p>
-<section id="what-you-need" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="what-you-need"><span class="header-section-number">1</span> What you need</h2>
-<ul>
-<li>A <code>quarto</code> installation, e.g.&nbsp;from <a href="https://quarto.org">https://quarto.org</a></li>
-<li>A suitable editor (e.g.&nbsp;VSCode)</li>
-<li>An account on Github (or similar services)</li>
-<li>Some knowledge of <code>git</code></li>
-</ul>
-</section>
-<section id="to-create-your-website-on-github" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="to-create-your-website-on-github"><span class="header-section-number">2</span> To create your website on github</h2>
-<ul>
-<li>Go to your repository on github (e.g.&nbsp;<a href="">https://github.com/FTurci/minimal-quarto-lab-book</a>)</li>
-<li>Click on <code>Settings</code></li>
-<li>Click on <code>Pages</code> on the left sidebar</li>
-<li>Under the section <strong>Branch</strong> select branch <code>main</code> and select folder <code>docs</code></li>
-<li>Render your project with <code>quarto render</code></li>
-<li>Commit and push your changes and you are done. The website will be available under you domain (e.g., <a href="">https://fturci.github.io/minimal-quarto-lab-book/welcome.html</a> )</li>
-</ul>
-</section>
-<section id="example-of-minimal-code" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="example-of-minimal-code"><span class="header-section-number">3</span> Example of minimal code</h2>
-<div id="91b84677" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">10</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>plt.plot(t,t)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-2" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> __future__ <span class="im">import</span> division</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.random <span class="im">import</span> rand</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">##  BLOCK OF FUNCTIONS USED IN THE MAIN CODE</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initialstate(N):   </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">''' generates a random spin configuration for initial condition'''</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    state <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.random.randint(<span class="dv">2</span>, size<span class="op">=</span>(N,N))<span class="op">-</span><span class="dv">1</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> state</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mcmove(config, beta):</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''Monte Carlo move using Metropolis algorithm '''</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                a <span class="op">=</span> np.random.randint(<span class="dv">0</span>, N)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                b <span class="op">=</span> np.random.randint(<span class="dv">0</span>, N)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                s <span class="op">=</span>  config[a, b]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                nb <span class="op">=</span> config[(a<span class="op">+</span><span class="dv">1</span>)<span class="op">%</span>N,b] <span class="op">+</span> config[a,(b<span class="op">+</span><span class="dv">1</span>)<span class="op">%</span>N] <span class="op">+</span> config[(a<span class="op">-</span><span class="dv">1</span>)<span class="op">%</span>N,b] <span class="op">+</span> config[a,(b<span class="op">-</span><span class="dv">1</span>)<span class="op">%</span>N]</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                cost <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>s<span class="op">*</span>nb</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> cost <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                    s <span class="op">*=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> rand() <span class="op">&lt;</span> np.exp(<span class="op">-</span>cost<span class="op">*</span>beta):</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                    s <span class="op">*=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                config[a, b] <span class="op">=</span> s</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> config</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcEnergy(config):</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''Energy of a given configuration'''</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    energy <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(config)):</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(config)):</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>            S <span class="op">=</span> config[i,j]</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>            nb <span class="op">=</span> config[(i<span class="op">+</span><span class="dv">1</span>)<span class="op">%</span>N, j] <span class="op">+</span> config[i,(j<span class="op">+</span><span class="dv">1</span>)<span class="op">%</span>N] <span class="op">+</span> config[(i<span class="op">-</span><span class="dv">1</span>)<span class="op">%</span>N, j] <span class="op">+</span> config[i,(j<span class="op">-</span><span class="dv">1</span>)<span class="op">%</span>N]</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>            energy <span class="op">+=</span> <span class="op">-</span>nb<span class="op">*</span>S</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> energy<span class="op">/</span><span class="fl">4.</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcMag(config):</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''Magnetization of a given configuration'''</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    mag <span class="op">=</span> np.<span class="bu">sum</span>(config)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mag</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-3" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">## change these parameters for a smaller (faster) simulation </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>nt      <span class="op">=</span> <span class="dv">4</span>         <span class="co">#  number of temperature points</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>N       <span class="op">=</span> <span class="dv">8</span>         <span class="co">#  size of the lattice, N x N</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>eqSteps <span class="op">=</span> <span class="dv">1024</span>       <span class="co">#  number of MC sweeps for equilibration</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>mcSteps <span class="op">=</span> <span class="dv">1024</span>       <span class="co">#  number of MC sweeps for calculation</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>T       <span class="op">=</span> np.linspace(<span class="fl">1.53</span>, <span class="fl">3.28</span>, nt) </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>E,M,C,X <span class="op">=</span> np.zeros(nt), np.zeros(nt), np.zeros(nt), np.zeros(nt)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>n1, n2  <span class="op">=</span> <span class="fl">1.0</span><span class="op">/</span>(mcSteps<span class="op">*</span>N<span class="op">*</span>N), <span class="fl">1.0</span><span class="op">/</span>(mcSteps<span class="op">*</span>mcSteps<span class="op">*</span>N<span class="op">*</span>N) </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># divide by number of samples, and by system size to get intensive values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-4" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  MAIN PART OF THE CODE</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tt <span class="kw">in</span> <span class="bu">range</span>(nt):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(tt)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    E1 <span class="op">=</span> M1 <span class="op">=</span> E2 <span class="op">=</span> M2 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    config <span class="op">=</span> initialstate(N)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    iT<span class="op">=</span><span class="fl">1.0</span><span class="op">/</span>T[tt]<span class="op">;</span> iT2<span class="op">=</span>iT<span class="op">*</span>iT<span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(eqSteps):         <span class="co"># equilibrate</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        mcmove(config, iT)           <span class="co"># Monte Carlo moves</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(mcSteps):</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        mcmove(config, iT)           </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        Ene <span class="op">=</span> calcEnergy(config)     <span class="co"># calculate the energy</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        Mag <span class="op">=</span> calcMag(config)        <span class="co"># calculate the magnetisation</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        E1 <span class="op">=</span> E1 <span class="op">+</span> Ene</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        M1 <span class="op">=</span> M1 <span class="op">+</span> Mag</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        M2 <span class="op">=</span> M2 <span class="op">+</span> Mag<span class="op">*</span>Mag </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        E2 <span class="op">=</span> E2 <span class="op">+</span> Ene<span class="op">*</span>Ene</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    E[tt] <span class="op">=</span> n1<span class="op">*</span>E1</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    M[tt] <span class="op">=</span> n1<span class="op">*</span>M1</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    C[tt] <span class="op">=</span> (n1<span class="op">*</span>E2 <span class="op">-</span> n2<span class="op">*</span>E1<span class="op">*</span>E1)<span class="op">*</span>iT2</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    X[tt] <span class="op">=</span> (n1<span class="op">*</span>M2 <span class="op">-</span> n2<span class="op">*</span>M1<span class="op">*</span>M1)<span class="op">*</span>iT</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0
+1
+2
+3</code></pre>
+</div>
+</div>
+<div id="cell-5" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">10</span>))<span class="op">;</span> <span class="co"># plot the calculated values    </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sp <span class="op">=</span>  f.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span> )<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(T, E, s<span class="op">=</span><span class="dv">50</span>, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'IndianRed'</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Temperature (T)"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Energy "</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span>         plt.axis(<span class="st">'tight'</span>)<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>sp <span class="op">=</span>  f.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span> )<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.scatter(T, <span class="bu">abs</span>(M), s<span class="op">=</span><span class="dv">50</span>, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'RoyalBlue'</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Temperature (T)"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span> </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Magnetization "</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span>   plt.axis(<span class="st">'tight'</span>)<span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>sp <span class="op">=</span>  f.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span> )<span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.scatter(T, C, s<span class="op">=</span><span class="dv">50</span>, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'IndianRed'</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Temperature (T)"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span>  </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Specific Heat "</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span>   plt.axis(<span class="st">'tight'</span>)<span class="op">;</span>   </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>sp <span class="op">=</span>  f.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span> )<span class="op">;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>plt.scatter(T, X, s<span class="op">=</span><span class="dv">50</span>, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'RoyalBlue'</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Temperature (T)"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span> </span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Susceptibility"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span>   plt.axis(<span class="st">'tight'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="welcome_files/figure-html/cell-2-output-1.png" width="566" height="411" class="figure-img"></p>
+<p><img src="notebook_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
