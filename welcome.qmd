@@ -26,7 +26,7 @@ For more information on Quarto, see [https://quarto.org](https://quarto.org)
 - Click on `Pages` on the left sidebar
 - Under the section **Branch** select branch `main` and select folder `docs`
 - Render your project with `quarto render` 
-- Commit and push your changes and you are done. The website will be available under you domain (e.g., [https://fturci.github.io/minimal-quarto-lab-book/welcome.html] )
+- Commit and push your changes and you are done. The website will be available under you domain (e.g., [https://fturci.github.io/minimal-quarto-lab-book/welcome.html]() )
 
 
 ## Example of minimal code

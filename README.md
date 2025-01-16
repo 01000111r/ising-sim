@@ -10,4 +10,4 @@ To reuse this repository, clone it
 git clone https://github.com/FTurci/minimal-quarto-lab-book.git
 ```
 
-To see the webpage resulting from this repository, go  to https://github.com/FTurci/minimal-quarto-lab-book
+To see the webpage resulting from this repository, go to https://fturci.github.io/minimal-quarto-lab-book 
