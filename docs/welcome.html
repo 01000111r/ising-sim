@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -110,6 +144,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Lab book in Quarto</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Example in <code>jupyter</code></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -120,28 +160,40 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lab-book-in-quarto" id="toc-lab-book-in-quarto" class="nav-link active" data-scroll-target="#lab-book-in-quarto"><span class="header-section-number">1</span> Lab book in Quarto</a>
-  <ul class="collapse">
-  <li><a href="#what-you-need" id="toc-what-you-need" class="nav-link" data-scroll-target="#what-you-need"><span class="header-section-number">1.1</span> What you need</a></li>
-  <li><a href="#to-create-your-website-on-github" id="toc-to-create-your-website-on-github" class="nav-link" data-scroll-target="#to-create-your-website-on-github"><span class="header-section-number">1.2</span> To create your website on github</a></li>
-  </ul></li>
+  <li><a href="#what-you-need" id="toc-what-you-need" class="nav-link active" data-scroll-target="#what-you-need"><span class="header-section-number">1</span> What you need</a></li>
+  <li><a href="#to-create-your-website-on-github" id="toc-to-create-your-website-on-github" class="nav-link" data-scroll-target="#to-create-your-website-on-github"><span class="header-section-number">2</span> To create your website on github</a></li>
+  <li><a href="#example-of-minimal-code" id="toc-example-of-minimal-code" class="nav-link" data-scroll-target="#example-of-minimal-code"><span class="header-section-number">3</span> Example of minimal code</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab book in Quarto</h1>
+</div>
 
 
 
-<section id="lab-book-in-quarto" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Lab book in Quarto</h1>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <p>Quarto is a an editing platform centered on Markdown.</p>
 <p>You can write down multiple kinds of interactive documents in Quarto, including websites that mix code, text, equations etc. The individual notebook can be jupyter notebooks or dedicated markdown documents.</p>
 <p>Combined with combined repositories such as GitHub, Quarto allows you to create a static website to collect your progress is very easily.</p>
 <p>For more information on Quarto, see <a href="https://quarto.org">https://quarto.org</a></p>
-<section id="what-you-need" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="what-you-need"><span class="header-section-number">1.1</span> What you need</h2>
+<section id="what-you-need" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="what-you-need"><span class="header-section-number">1</span> What you need</h2>
 <ul>
 <li>A <code>quarto</code> installation, e.g.&nbsp;from <a href="https://quarto.org">https://quarto.org</a></li>
 <li>A suitable editor (e.g.&nbsp;VSCode)</li>
@@ -149,18 +201,36 @@ ul.task-list li input[type="checkbox"] {
 <li>Some knowledge of <code>git</code></li>
 </ul>
 </section>
-<section id="to-create-your-website-on-github" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="to-create-your-website-on-github"><span class="header-section-number">1.2</span> To create your website on github</h2>
+<section id="to-create-your-website-on-github" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="to-create-your-website-on-github"><span class="header-section-number">2</span> To create your website on github</h2>
 <ul>
-<li>Go to your repository on github (e.g.&nbsp;https://github.com/FTurci/minimal-quarto-lab-book)</li>
+<li>Go to your repository on github (e.g.&nbsp;<a href="">https://github.com/FTurci/minimal-quarto-lab-book</a>)</li>
 <li>Click on <code>Settings</code></li>
 <li>Click on <code>Pages</code> on the left sidebar</li>
 <li>Under the section <strong>Branch</strong> select branch <code>main</code> and select folder <code>docs</code></li>
-<li>Commit and push your changes and you are done.</li>
+<li>Render your project with <code>quarto render</code></li>
+<li>Commit and push your changes and you are done. The website will be available under you domain (e.g., [https://fturci.github.io/minimal-quarto-lab-book/welcome.html] )</li>
 </ul>
-
-
 </section>
+<section id="example-of-minimal-code" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="example-of-minimal-code"><span class="header-section-number">3</span> Example of minimal code</h2>
+<div id="b5028d91" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">10</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>plt.plot(t,t)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="welcome_files/figure-html/cell-2-output-1.png" width="566" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

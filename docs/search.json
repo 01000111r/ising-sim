@@ -2,9 +2,9 @@
   {
     "objectID": "welcome.html",
     "href": "welcome.html",
-    "title": "1 Lab book in Quarto",
+    "title": "Lab book in Quarto",
     "section": "",
-    "text": "Quarto is a an editing platform centered on Markdown.\nYou can write down multiple kinds of interactive documents in Quarto, including websites that mix code, text, equations etc. The individual notebook can be jupyter notebooks or dedicated markdown documents.\nCombined with combined repositories such as GitHub, Quarto allows you to create a static website to collect your progress is very easily.\nFor more information on Quarto, see https://quarto.org\n\n\n\nA quarto installation, e.g. from https://quarto.org\nA suitable editor (e.g. VSCode)\nAn account on Github (or similar services)\nSome knowledge of git\n\n\n\n\n\nGo to your repository on github (e.g. https://github.com/FTurci/minimal-quarto-lab-book)\nClick on Settings\nClick on Pages on the left sidebar\nUnder the section Branch select branch main and select folder docs\nCommit and push your changes and you are done.",
+    "text": "Quarto is a an editing platform centered on Markdown.\nYou can write down multiple kinds of interactive documents in Quarto, including websites that mix code, text, equations etc. The individual notebook can be jupyter notebooks or dedicated markdown documents.\nCombined with combined repositories such as GitHub, Quarto allows you to create a static website to collect your progress is very easily.\nFor more information on Quarto, see https://quarto.org",
     "crumbs": [
       "Lab book in Quarto"
     ]
@@ -12,9 +12,9 @@
   {
     "objectID": "welcome.html#what-you-need",
     "href": "welcome.html#what-you-need",
-    "title": "1 Lab book in Quarto",
-    "section": "",
-    "text": "A quarto installation, e.g. from https://quarto.org\nA suitable editor (e.g. VSCode)\nAn account on Github (or similar services)\nSome knowledge of git",
+    "title": "Lab book in Quarto",
+    "section": "1 What you need",
+    "text": "1 What you need\n\nA quarto installation, e.g. from https://quarto.org\nA suitable editor (e.g. VSCode)\nAn account on Github (or similar services)\nSome knowledge of git",
     "crumbs": [
       "Lab book in Quarto"
     ]
@@ -22,11 +22,31 @@
   {
     "objectID": "welcome.html#to-create-your-website-on-github",
     "href": "welcome.html#to-create-your-website-on-github",
-    "title": "1 Lab book in Quarto",
-    "section": "",
-    "text": "Go to your repository on github (e.g. https://github.com/FTurci/minimal-quarto-lab-book)\nClick on Settings\nClick on Pages on the left sidebar\nUnder the section Branch select branch main and select folder docs\nCommit and push your changes and you are done.",
+    "title": "Lab book in Quarto",
+    "section": "2 To create your website on github",
+    "text": "2 To create your website on github\n\nGo to your repository on github (e.g. https://github.com/FTurci/minimal-quarto-lab-book)\nClick on Settings\nClick on Pages on the left sidebar\nUnder the section Branch select branch main and select folder docs\nRender your project with quarto render\nCommit and push your changes and you are done. The website will be available under you domain (e.g., [https://fturci.github.io/minimal-quarto-lab-book/welcome.html] )",
     "crumbs": [
       "Lab book in Quarto"
+    ]
+  },
+  {
+    "objectID": "welcome.html#example-of-minimal-code",
+    "href": "welcome.html#example-of-minimal-code",
+    "title": "Lab book in Quarto",
+    "section": "3 Example of minimal code",
+    "text": "3 Example of minimal code\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nt = np.linspace(0,10)\nplt.plot(t,t)\nplt.show()",
+    "crumbs": [
+      "Lab book in Quarto"
+    ]
+  },
+  {
+    "objectID": "notebook.html",
+    "href": "notebook.html",
+    "title": "Example in jupyter",
+    "section": "",
+    "text": "from __future__ import division\nimport numpy as np\nfrom numpy.random import rand\nimport matplotlib.pyplot as plt\n\n\n#----------------------------------------------------------------------\n##  BLOCK OF FUNCTIONS USED IN THE MAIN CODE\n#----------------------------------------------------------------------\ndef initialstate(N):   \n    ''' generates a random spin configuration for initial condition'''\n    state = 2*np.random.randint(2, size=(N,N))-1\n    return state\n\n\ndef mcmove(config, beta):\n    '''Monte Carlo move using Metropolis algorithm '''\n    for i in range(N):\n        for j in range(N):\n                a = np.random.randint(0, N)\n                b = np.random.randint(0, N)\n                s =  config[a, b]\n                nb = config[(a+1)%N,b] + config[a,(b+1)%N] + config[(a-1)%N,b] + config[a,(b-1)%N]\n                cost = 2*s*nb\n                if cost &lt; 0:\n                    s *= -1\n                elif rand() &lt; np.exp(-cost*beta):\n                    s *= -1\n                config[a, b] = s\n    return config\n\n\ndef calcEnergy(config):\n    '''Energy of a given configuration'''\n    energy = 0\n    for i in range(len(config)):\n        for j in range(len(config)):\n            S = config[i,j]\n            nb = config[(i+1)%N, j] + config[i,(j+1)%N] + config[(i-1)%N, j] + config[i,(j-1)%N]\n            energy += -nb*S\n    return energy/4.\n\n\ndef calcMag(config):\n    '''Magnetization of a given configuration'''\n    mag = np.sum(config)\n    return mag\n\n\n## change these parameters for a smaller (faster) simulation \nnt      = 4         #  number of temperature points\nN       = 8         #  size of the lattice, N x N\neqSteps = 1024       #  number of MC sweeps for equilibration\nmcSteps = 1024       #  number of MC sweeps for calculation\n\nT       = np.linspace(1.53, 3.28, nt) \nE,M,C,X = np.zeros(nt), np.zeros(nt), np.zeros(nt), np.zeros(nt)\nn1, n2  = 1.0/(mcSteps*N*N), 1.0/(mcSteps*mcSteps*N*N) \n# divide by number of samples, and by system size to get intensive values\n\n\n#----------------------------------------------------------------------\n#  MAIN PART OF THE CODE\n#----------------------------------------------------------------------\nfor tt in range(nt):\n    print(tt)\n    E1 = M1 = E2 = M2 = 0\n    config = initialstate(N)\n    iT=1.0/T[tt]; iT2=iT*iT;\n    \n    for i in range(eqSteps):         # equilibrate\n        mcmove(config, iT)           # Monte Carlo moves\n\n    for i in range(mcSteps):\n        mcmove(config, iT)           \n        Ene = calcEnergy(config)     # calculate the energy\n        Mag = calcMag(config)        # calculate the magnetisation\n\n        E1 = E1 + Ene\n        M1 = M1 + Mag\n        M2 = M2 + Mag*Mag \n        E2 = E2 + Ene*Ene\n\n    E[tt] = n1*E1\n    M[tt] = n1*M1\n    C[tt] = (n1*E2 - n2*E1*E1)*iT2\n    X[tt] = (n1*M2 - n2*M1*M1)*iT\n\n0\n1\n2\n3\n\n\n\nf = plt.figure(figsize=(18, 10)); # plot the calculated values    \n\nsp =  f.add_subplot(2, 2, 1 );\nplt.scatter(T, E, s=50, marker='o', color='IndianRed')\nplt.xlabel(\"Temperature (T)\", fontsize=20);\nplt.ylabel(\"Energy \", fontsize=20);         plt.axis('tight');\n\nsp =  f.add_subplot(2, 2, 2 );\nplt.scatter(T, abs(M), s=50, marker='o', color='RoyalBlue')\nplt.xlabel(\"Temperature (T)\", fontsize=20); \nplt.ylabel(\"Magnetization \", fontsize=20);   plt.axis('tight');\n\nsp =  f.add_subplot(2, 2, 3 );\nplt.scatter(T, C, s=50, marker='o', color='IndianRed')\nplt.xlabel(\"Temperature (T)\", fontsize=20);  \nplt.ylabel(\"Specific Heat \", fontsize=20);   plt.axis('tight');   \n\nsp =  f.add_subplot(2, 2, 4 );\nplt.scatter(T, X, s=50, marker='o', color='RoyalBlue')\nplt.xlabel(\"Temperature (T)\", fontsize=20); \nplt.ylabel(\"Susceptibility\", fontsize=20);   plt.axis('tight');",
+    "crumbs": [
+      "Example in `jupyter`"
     ]
   }
 ]

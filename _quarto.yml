@@ -13,6 +13,7 @@ website:
     collapse-level: 1
     contents:
       - welcome.qmd
+      - notebook.ipynb
 
 
 
