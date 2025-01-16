@@ -1,0 +1,25 @@
+project:
+  type: website
+
+
+website:
+  title: "Minimal Quarto Lab Book"
+  sidebar:
+    smooth-scroll: true
+    logo: img/logo.png
+    style: "docked"
+    search: true
+    collapse-level: 1
+    contents:
+      - welcome.qmd
+
+
+
+format:
+  html:
+    theme: cosmo
+    grid:
+      sidebar-width: 305px
+    toc: true
+    number-chapters: true
+    number-sections: true
