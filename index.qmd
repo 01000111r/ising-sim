@@ -1,13 +1,10 @@
 
-# Lab book in Quarto
+# This is my lab-book for Ising model Project
 
-Quarto is a an editing platform centered on Markdown.
+To download quarto, go to https://quarto.org
 
-You can write down multiple kinds of interactive documents in Quarto, including websites that mix code, text, equations etc. The individual notebook can be jupyter notebooks or dedicated markdown documents.
 
-Combined with combined repositories such as GitHub, Quarto allows you to create a static website to collect your progress is very easily.
-
-For more information on Quarto, see [https://quarto.org](https://quarto.org)
+To see the webpage resulting from this repository, go to https://01000111r.github.io/lab-book-ising/
 
 ## What you need 
 

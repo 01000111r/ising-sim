@@ -2,41 +2,41 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Lab book in Quarto",
+    "title": "This is my lab-book for Ising model Project",
     "section": "",
-    "text": "Quarto is a an editing platform centered on Markdown.\nYou can write down multiple kinds of interactive documents in Quarto, including websites that mix code, text, equations etc. The individual notebook can be jupyter notebooks or dedicated markdown documents.\nCombined with combined repositories such as GitHub, Quarto allows you to create a static website to collect your progress is very easily.\nFor more information on Quarto, see https://quarto.org",
+    "text": "To download quarto, go to https://quarto.org\nTo see the webpage resulting from this repository, go to https://01000111r.github.io/lab-book-ising/",
     "crumbs": [
-      "Lab book in Quarto"
+      "This is my lab-book for Ising model Project"
     ]
   },
   {
     "objectID": "index.html#what-you-need",
     "href": "index.html#what-you-need",
-    "title": "Lab book in Quarto",
+    "title": "This is my lab-book for Ising model Project",
     "section": "1 What you need",
     "text": "1 What you need\n\nA quarto installation, e.g. from https://quarto.org\nA suitable editor (e.g. VSCode)\nAn account on Github (or similar services)\nSome knowledge of git",
     "crumbs": [
-      "Lab book in Quarto"
+      "This is my lab-book for Ising model Project"
     ]
   },
   {
     "objectID": "index.html#to-create-your-website-on-github",
     "href": "index.html#to-create-your-website-on-github",
-    "title": "Lab book in Quarto",
+    "title": "This is my lab-book for Ising model Project",
     "section": "2 To create your website on github",
     "text": "2 To create your website on github\n\nGo to your repository on github (e.g. https://github.com/FTurci/minimal-quarto-lab-book)\nClick on Settings\nClick on Pages on the left sidebar\nUnder the section Branch select branch main and select folder docs\nRender your project with quarto render\nCommit and push your changes and you are done. The website will be available under you domain (e.g., https://fturci.github.io/minimal-quarto-lab-book/welcome.html )",
     "crumbs": [
-      "Lab book in Quarto"
+      "This is my lab-book for Ising model Project"
     ]
   },
   {
     "objectID": "index.html#example-of-minimal-code",
     "href": "index.html#example-of-minimal-code",
-    "title": "Lab book in Quarto",
+    "title": "This is my lab-book for Ising model Project",
     "section": "3 Example of minimal code",
     "text": "3 Example of minimal code\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nt = np.linspace(0,10)\nplt.plot(t,t)\nplt.show()",
     "crumbs": [
-      "Lab book in Quarto"
+      "This is my lab-book for Ising model Project"
     ]
   },
   {
