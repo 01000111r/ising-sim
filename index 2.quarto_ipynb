@@ -1,0 +1,66 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Lab book in Quarto\n",
+        "\n",
+        "Quarto is a an editing platform centered on Markdown.\n",
+        "\n",
+        "You can write down multiple kinds of interactive documents in Quarto, including websites that mix code, text, equations etc. The individual notebook can be jupyter notebooks or dedicated markdown documents.\n",
+        "\n",
+        "Combined with combined repositories such as GitHub, Quarto allows you to create a static website to collect your progress is very easily.\n",
+        "\n",
+        "For more information on Quarto, see [https://quarto.org](https://quarto.org)\n",
+        "\n",
+        "## What you need \n",
+        "\n",
+        "\n",
+        "- A `quarto` installation, e.g. from  [https://quarto.org](https://quarto.org)\n",
+        "- A suitable editor (e.g. VSCode)\n",
+        "- An account on Github (or similar services)\n",
+        "- Some knowledge of `git`\n",
+        "\n",
+        "\n",
+        "\n",
+        "## To create your website on github\n",
+        "\n",
+        "- Go to your repository on github (e.g. [https://github.com/FTurci/minimal-quarto-lab-book]())\n",
+        "- Click on `Settings`\n",
+        "- Click on `Pages` on the left sidebar\n",
+        "- Under the section **Branch** select branch `main` and select folder `docs`\n",
+        "- Render your project with `quarto render` \n",
+        "- Commit and push your changes and you are done. The website will be available under you domain (e.g., [https://fturci.github.io/minimal-quarto-lab-book/welcome.html]() )\n",
+        "\n",
+        "\n",
+        "## Example of minimal code\n"
+      ],
+      "id": "2140272a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt\n",
+        "\n",
+        "t = np.linspace(0,10)\n",
+        "plt.plot(t,t)\n",
+        "plt.show()"
+      ],
+      "id": "c26e8e97",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

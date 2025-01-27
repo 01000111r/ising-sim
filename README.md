@@ -1,13 +1,8 @@
 # Minimal `quarto` lab book
 
-This repository contains a minimal structure for a lab book using `quarto`.
+This is my lab-book for Ising model Project
 
 To download quarto, go to https://quarto.org
 
-To reuse this repository, clone it 
 
-```bash
-git clone https://github.com/FTurci/minimal-quarto-lab-book.git
-```
-
-To see the webpage resulting from this repository, go to https://fturci.github.io/minimal-quarto-lab-book 
+To see the webpage resulting from this repository, go to https://01000111r.github.io/lab-book-ising/
