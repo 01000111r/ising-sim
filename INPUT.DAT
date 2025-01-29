@@ -1,0 +1,3 @@
+32	!cell dimension
+8000	!steps until equilibration
+96000	!total MC steps

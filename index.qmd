@@ -1,27 +1,7 @@
 
-# This is my lab-book for Ising model Project
+# Information
 
-To download quarto, go to https://quarto.org
+Ising Model Project Lab Book - Giancarlo Ramirez
 
-
-To see the webpage resulting from this repository, go to https://01000111r.github.io/lab-book-ising/
-
-## What you need 
-
-
-- A `quarto` installation, e.g. from  [https://quarto.org](https://quarto.org)
-- A suitable editor (e.g. VSCode)
-- An account on Github (or similar services)
-- Some knowledge of `git`
-
-
-
-## To create your website on github
-
-- Go to your repository on github (e.g. [https://github.com/FTurci/minimal-quarto-lab-book]())
-- Click on `Settings`
-- Click on `Pages` on the left sidebar
-- Under the section **Branch** select branch `main` and select folder `docs`
-- Render your project with `quarto render` 
-- Commit and push your changes and you are done. The website will be available under you domain (e.g., [https://fturci.github.io/minimal-quarto-lab-book/welcome.html]() )
+email: [zj22662@bristol.ac.uk](zj22662@bristol.ac.uk)
 

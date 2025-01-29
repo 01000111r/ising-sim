@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-1092c56c6cadf2eb47b1bc8063ab382a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-828dd9dc578bda216345a962a047c26c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-4c68400be91bba025f7aff951ba1f2cc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./notebook.html">Example in <code>jupyter</code></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./notebook.html">Example in jupyter</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -141,19 +141,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">This is my lab-book for Ising model Project</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./notebook.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Example in <code>jupyter</code></span></a>
+ <span class="menu-text">Information</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./week1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">week1.html</span></a>
+ <span class="menu-text">Week 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Example in jupyter</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 2</span></a>
   </div>
 </li>
     </ul>
@@ -169,7 +175,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Example in <code>jupyter</code></h1>
+<h1 class="title">Example in jupyter</h1>
 </div>
 
 
@@ -186,7 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> __future__ <span class="im">import</span> division</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.random <span class="im">import</span> rand</span>
@@ -235,10 +241,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    mag <span class="op">=</span> np.<span class="bu">sum</span>(config)</span>
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mag</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-3" class="cell" data-execution_count="6">
+<div id="cell-3" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">## change these parameters for a smaller (faster) simulation </span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>nt      <span class="op">=</span> <span class="dv">4</span>         <span class="co">#  number of temperature points</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>N       <span class="op">=</span> <span class="dv">8</span>         <span class="co">#  size of the lattice, N x N</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>nt      <span class="op">=</span> <span class="dv">4</span>        <span class="co">#  number of temperature points</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>N       <span class="op">=</span> <span class="dv">16</span>         <span class="co">#  size of the lattice, N x N</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>eqSteps <span class="op">=</span> <span class="dv">1024</span>       <span class="co">#  number of MC sweeps for equilibration</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>mcSteps <span class="op">=</span> <span class="dv">1024</span>       <span class="co">#  number of MC sweeps for calculation</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -247,7 +253,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>n1, n2  <span class="op">=</span> <span class="fl">1.0</span><span class="op">/</span>(mcSteps<span class="op">*</span>N<span class="op">*</span>N), <span class="fl">1.0</span><span class="op">/</span>(mcSteps<span class="op">*</span>mcSteps<span class="op">*</span>N<span class="op">*</span>N) </span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># divide by number of samples, and by system size to get intensive values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-4" class="cell" data-execution_count="7">
+<p>7 mins nt = 10 # number of temperature points N = 32 # size of the lattice, N x N eqSteps = 1024 # number of MC sweeps for equilibration mcSteps = 1024 # number of MC sweeps for calculation</p>
+<p>20seconds nt = 4 N = 16</p>
+<div id="cell-5" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  MAIN PART OF THE CODE</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------</span></span>
@@ -281,32 +289,132 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 3</code></pre>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">10</span>))<span class="op">;</span> <span class="co"># plot the calculated values    </span></span>
+<div id="cell-6" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">5</span>))<span class="op">;</span> <span class="co"># plot the calculated values    </span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sp <span class="op">=</span>  f.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span> )<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sp <span class="op">=</span>  f.add_subplot(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span> )<span class="op">;</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(T, E, s<span class="op">=</span><span class="dv">50</span>, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'IndianRed'</span>)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Temperature (T)"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Energy "</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span>         plt.axis(<span class="st">'tight'</span>)<span class="op">;</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>sp <span class="op">=</span>  f.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span> )<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>sp <span class="op">=</span>  f.add_subplot(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span> )<span class="op">;</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.scatter(T, <span class="bu">abs</span>(M), s<span class="op">=</span><span class="dv">50</span>, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'RoyalBlue'</span>)</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Temperature (T)"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span> </span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Magnetization "</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span>   plt.axis(<span class="st">'tight'</span>)<span class="op">;</span></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>sp <span class="op">=</span>  f.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span> )<span class="op">;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>sp <span class="op">=</span>  f.add_subplot(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span> )<span class="op">;</span></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.scatter(T, C, s<span class="op">=</span><span class="dv">50</span>, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'IndianRed'</span>)</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Temperature (T)"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span>  </span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Specific Heat "</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span>   plt.axis(<span class="st">'tight'</span>)<span class="op">;</span>   </span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>sp <span class="op">=</span>  f.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span> )<span class="op">;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>sp <span class="op">=</span>  f.add_subplot(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">4</span> )<span class="op">;</span></span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>plt.scatter(T, X, s<span class="op">=</span><span class="dv">50</span>, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'RoyalBlue'</span>)</span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Temperature (T)"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span> </span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Susceptibility"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span>   plt.axis(<span class="st">'tight'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[24], line 8</span>
+<span class="ansi-green-fg ansi-bold">      5</span> plt<span style="color:rgb(98,98,98)">.</span>xlabel(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Temperature (T)</span><span style="color:rgb(175,0,0)">"</span>, fontsize<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">20</span>);
+<span class="ansi-green-fg ansi-bold">      6</span> plt<span style="color:rgb(98,98,98)">.</span>ylabel(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Energy </span><span style="color:rgb(175,0,0)">"</span>, fontsize<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">20</span>);         plt<span style="color:rgb(98,98,98)">.</span>axis(<span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">tight</span><span style="color:rgb(175,0,0)">'</span>);
+<span class="ansi-green-fg">----&gt; 8</span> sp <span style="color:rgb(98,98,98)">=</span>  <span class="ansi-yellow-bg">f</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">add_subplot</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">1</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">1</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">2</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">)</span>;
+<span class="ansi-green-fg ansi-bold">      9</span> plt<span style="color:rgb(98,98,98)">.</span>scatter(T, <span style="color:rgb(0,135,0)">abs</span>(M), s<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">50</span>, marker<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">o</span><span style="color:rgb(175,0,0)">'</span>, color<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">RoyalBlue</span><span style="color:rgb(175,0,0)">'</span>)
+<span class="ansi-green-fg ansi-bold">     10</span> plt<span style="color:rgb(98,98,98)">.</span>xlabel(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Temperature (T)</span><span style="color:rgb(175,0,0)">"</span>, fontsize<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">20</span>); 
+
+File <span class="ansi-green-fg">~/Documents/Ising_Project/minimal-quarto-lab-book/venv/lib/python3.13/site-packages/matplotlib/figure.py:768</span>, in <span class="ansi-cyan-fg">FigureBase.add_subplot</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
+<span class="ansi-green-fg ansi-bold">    766</span>         args <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)">tuple</span>(<span style="color:rgb(0,135,0)">map</span>(<span style="color:rgb(0,135,0)">int</span>, <span style="color:rgb(0,135,0)">str</span>(args[<span style="color:rgb(98,98,98)">0</span>])))
+<span class="ansi-green-fg ansi-bold">    767</span>     projection_class, pkw <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>_process_projection_requirements(<span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span>kwargs)
+<span class="ansi-green-fg">--&gt; 768</span>     ax <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">projection_class</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">pkw</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">    769</span>     key <span style="color:rgb(98,98,98)">=</span> (projection_class, pkw)
+<span class="ansi-green-fg ansi-bold">    770</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>_add_axes_internal(ax, key)
+
+File <span class="ansi-green-fg">~/Documents/Ising_Project/minimal-quarto-lab-book/venv/lib/python3.13/site-packages/matplotlib/axes/_base.py:656</span>, in <span class="ansi-cyan-fg">_AxesBase.__init__</span><span class="ansi-blue-fg">(self, fig, facecolor, frameon, sharex, sharey, label, xscale, yscale, box_aspect, forward_navigation_events, *args, **kwargs)</span>
+<span class="ansi-green-fg ansi-bold">    654</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg ansi-bold">    655</span>     <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>_position <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>_originalPosition <span style="color:rgb(98,98,98)">=</span> mtransforms<span style="color:rgb(98,98,98)">.</span>Bbox<span style="color:rgb(98,98,98)">.</span>unit()
+<span class="ansi-green-fg">--&gt; 656</span>     subplotspec <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">SubplotSpec</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_from_subplot_args</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">fig</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">    657</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>_position<span style="color:rgb(98,98,98)">.</span>width <span style="color:rgb(98,98,98)">&lt;</span> <span style="color:rgb(98,98,98)">0</span> <span style="font-weight:bold;color:rgb(175,0,255)">or</span> <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>_position<span style="color:rgb(98,98,98)">.</span>height <span style="color:rgb(98,98,98)">&lt;</span> <span style="color:rgb(98,98,98)">0</span>:
+<span class="ansi-green-fg ansi-bold">    658</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">ValueError</span>(<span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">Width and height specified must be non-negative</span><span style="color:rgb(175,0,0)">'</span>)
+
+File <span class="ansi-green-fg">~/Documents/Ising_Project/minimal-quarto-lab-book/venv/lib/python3.13/site-packages/matplotlib/gridspec.py:589</span>, in <span class="ansi-cyan-fg">SubplotSpec._from_subplot_args</span><span class="ansi-blue-fg">(figure, args)</span>
+<span class="ansi-green-fg ansi-bold">    587</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg ansi-bold">    588</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> <span style="color:rgb(0,135,0)">isinstance</span>(num, Integral) <span style="font-weight:bold;color:rgb(175,0,255)">or</span> num <span style="color:rgb(98,98,98)">&lt;</span> <span style="color:rgb(98,98,98)">1</span> <span style="font-weight:bold;color:rgb(175,0,255)">or</span> num <span style="color:rgb(98,98,98)">&gt;</span> rows<span style="color:rgb(98,98,98)">*</span>cols:
+<span class="ansi-green-fg">--&gt; 589</span>         <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">ValueError</span>(
+<span class="ansi-green-fg ansi-bold">    590</span>             <span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">num must be an integer with 1 &lt;= num &lt;= </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>rows<span style="color:rgb(98,98,98)">*</span>cols<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">, </span><span style="color:rgb(175,0,0)">"</span>
+<span class="ansi-green-fg ansi-bold">    591</span>             <span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">not </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>num<span style="font-weight:bold;color:rgb(175,95,135)">!r}</span><span style="color:rgb(175,0,0)">"</span>
+<span class="ansi-green-fg ansi-bold">    592</span>         )
+<span class="ansi-green-fg ansi-bold">    593</span>     i <span style="color:rgb(98,98,98)">=</span> j <span style="color:rgb(98,98,98)">=</span> num
+<span class="ansi-green-fg ansi-bold">    594</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> gs[i<span style="color:rgb(98,98,98)">-</span><span style="color:rgb(98,98,98)">1</span>:j]
+
+<span class="ansi-red-fg">ValueError</span>: num must be an integer with 1 &lt;= num &lt;= 1, not 2</pre>
+</div>
+</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="notebook_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="notebook_files/figure-html/cell-5-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-7" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Ising():</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">''' Simulating the Ising model '''</span>    </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">## monte carlo moves</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mcmove(<span class="va">self</span>, config, N, beta):</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">''' This is to execute the monte carlo moves using </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">        Metropolis algorithm such that detailed</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">        balance condition is satisified'''</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(N):            </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>                    a <span class="op">=</span> np.random.randint(<span class="dv">0</span>, N)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>                    b <span class="op">=</span> np.random.randint(<span class="dv">0</span>, N)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>                    s <span class="op">=</span>  config[a, b]</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>                    nb <span class="op">=</span> config[(a<span class="op">+</span><span class="dv">1</span>)<span class="op">%</span>N,b] <span class="op">+</span> config[a,(b<span class="op">+</span><span class="dv">1</span>)<span class="op">%</span>N] <span class="op">+</span> config[(a<span class="op">-</span><span class="dv">1</span>)<span class="op">%</span>N,b] <span class="op">+</span> config[a,(b<span class="op">-</span><span class="dv">1</span>)<span class="op">%</span>N]</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>                    cost <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>s<span class="op">*</span>nb</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> cost <span class="op">&lt;</span> <span class="dv">0</span>:    </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>                        s <span class="op">*=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> rand() <span class="op">&lt;</span> np.exp(<span class="op">-</span>cost<span class="op">*</span>beta):</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>                        s <span class="op">*=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>                    config[a, b] <span class="op">=</span> s</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> config</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> simulate(<span class="va">self</span>):   </span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        <span class="co">''' This module simulates the Ising model'''</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        N, temp     <span class="op">=</span> <span class="dv">64</span>, <span class="fl">.4</span>        <span class="co"># Initialse the lattice</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        config <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.random.randint(<span class="dv">2</span>, size<span class="op">=</span>(N,N))<span class="op">-</span><span class="dv">1</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">15</span>), dpi<span class="op">=</span><span class="dv">80</span>)<span class="op">;</span>    </span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.configPlot(f, config, <span class="dv">0</span>, N, <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        msrmnt <span class="op">=</span> <span class="dv">1001</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(msrmnt):</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.mcmove(config, N, <span class="fl">1.0</span><span class="op">/</span>temp)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> i <span class="op">==</span> <span class="dv">1</span>:       <span class="va">self</span>.configPlot(f, config, i, N, <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> i <span class="op">==</span> <span class="dv">4</span>:       <span class="va">self</span>.configPlot(f, config, i, N, <span class="dv">3</span>)<span class="op">;</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> i <span class="op">==</span> <span class="dv">32</span>:      <span class="va">self</span>.configPlot(f, config, i, N, <span class="dv">4</span>)<span class="op">;</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> i <span class="op">==</span> <span class="dv">100</span>:     <span class="va">self</span>.configPlot(f, config, i, N, <span class="dv">5</span>)<span class="op">;</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> i <span class="op">==</span> <span class="dv">1000</span>:    <span class="va">self</span>.configPlot(f, config, i, N, <span class="dv">6</span>)<span class="op">;</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>                 </span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>                    </span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> configPlot(<span class="va">self</span>, f, config, i, N, n_):</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>        <span class="co">''' This modules plts the configuration once passed to it along with time etc '''</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>        X, Y <span class="op">=</span> np.meshgrid(<span class="bu">range</span>(N), <span class="bu">range</span>(N))</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>        sp <span class="op">=</span>  f.add_subplot(<span class="dv">3</span>, <span class="dv">3</span>, n_ )  </span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>        plt.setp(sp.get_yticklabels(), visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>        plt.setp(sp.get_xticklabels(), visible<span class="op">=</span><span class="va">False</span>)      </span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>        plt.pcolormesh(X, Y, config, cmap<span class="op">=</span>plt.cm.RdBu)<span class="op">;</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="st">'Time=</span><span class="sc">%d</span><span class="st">'</span><span class="op">%</span>i)<span class="op">;</span> plt.axis(<span class="st">'tight'</span>)    </span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-8" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rm <span class="op">=</span> Ising()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-9" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rm.simulate()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="notebook_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>

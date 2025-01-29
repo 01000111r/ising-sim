@@ -13,16 +13,23 @@ website:
     collapse-level: 1
     contents:
       - index.qmd
-      - notebook.ipynb
       - week1.qmd
+      - notebook.ipynb
+      - week2.qmd
+      
 
 
 
 format:
   html:
-    theme: cosmo
+    theme: lumen
+    highlight-style: pygments
+    
     grid:
       sidebar-width: 305px
     toc: true
+    chapters-folding: true
     number-chapters: true
-    number-sections: true
+    number-sections: false
+
+    

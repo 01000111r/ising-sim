@@ -1,0 +1,27 @@
+
+# Week 2
+
+## PDF: Session 2 
+ - Critical exponents
+    - critical behaviour relates to what happens around the critical temperature
+    - critical exponent defines how a certain parameter grows around the critical temperature to first order in exponent
+- Did exercies calculating theoretical critical exponnets for spin moment (β) and susceplitibility (γ) with and without field and the exponent for changing magnetic field (δ) with constant critical temperature
+- Scaling relations
+    - critical exponents can have relations to one another, α + 2β + γ = 2, γ = β(δ − 1)
+- Scale
+    -althought a mean field theory, seems to be more mathematically exact with higher dimensionality
+- Used in calculating/understanding critical exponents
+    - [Edinburgh notes on mean field theory - Ising model](https://www2.ph.ed.ac.uk/~mevans/sp/sp10.pdf)
+    - [Statistical Mechanics of phase transitions](https://perso.crans.org/sylvainrey/Biblio%20Physique/Physique/Physique%20statistique/%5BYeomans%5D%20Statistical%20Mechanics%20of%20Phase%20Transitions.pdf)
+
+## Ideas for how to orient Project
+    - Running time calibration
+        - Running time as function of size of the box
+        - Running time as function of total MC steps
+    - deviations of numerically calulcated magnetisation from analytical solution (SEE [wikipedia: Exact_solution](https://en.wikipedia.org/wiki/Square_lattice_Ising_model#Exact_solution))
+    - Critical exponents
+        - good experimental work on finding critical exponents using monte carlo methods
+        - find for higher dimensions
+    - Later Ideas  
+        - Universality
+        - Renormalisation group 

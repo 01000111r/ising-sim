@@ -1,14 +1,17 @@
 {
-  "welcome.qmd": {
-    "welcome.html": "355ffb4e"
-  },
   "notebook.ipynb": {
-    "notebook.html": "57da12e6"
+    "notebook.html": "b99c15f2",
+    "notebook.out.ipynb": "ed536a4b"
   },
   "index.qmd": {
-    "index.html": "ac39c499"
+    "index.html": "726d9944",
+    "index.ipynb": "b5e32485"
   },
   "week1.qmd": {
-    "week1.html": "2fb31dc4"
+    "week1.html": "5f738e4e",
+    "week1.ipynb": "05a423ab"
+  },
+  "week2.qmd": {
+    "week2.html": "ebe2b3fc"
   }
 }

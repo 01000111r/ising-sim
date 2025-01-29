@@ -1,0 +1,85 @@
+# Week 1
+
+## Initial meeting
+ - Topics:
+    - Renormalisation
+    - Critical exponents
+    - Scaling laws
+    - Phase transitions
+    - Clusters
+    - Fundamental model
+    - Metropolis algorithm
+    - BlueCrystal HPC
+ - Research and understand/experiment with code 
+ - Aim idea: ‘create popular account using research as structure’
+
+## PDF: Session 1 - Key concepts and background
+ - Intro
+    - Monte Carlo sampling method
+    - Use Ising to model magnetism, understand magnetic phase transition
+    - Main: 2D-square lattice, investigate parameters close to phase transition
+    - Extra: exact solution 1D, Potts/XY models 2D
+  - Phase transitions
+    - Van der Waals example, gas doesn’t resist being compressed —> must have phase transition
+    - Magnetism
+        - All sites spin up/down 
+        - Neighbouring atoms favour same direction, absolute zero has ground states ,all down(m=-ve)/up(m=+ve)
+        - Above T=0, entropy favours random spin, high temperatures —> p=1/2 for up/down —> M=0 (zero external field)
+        - Critical temp T_c when M=0
+    - Other PT’s: superfluids, superconductors
+    - PT example of spontaneously-broken symmetry
+ - Ising Model
+    - Each site assigned spin value σ = ±1 (up or down)
+    - Energy Hamiltonian, H = − Σ J.σ_i.σ_j − Σ B.σ_i , can be hard to calculate, N sites —> 2^N configurations of system
+    - First Σ over all NN’s (2D - 4 bonds), 
+        - J: exchange energy, 
+            - J < 0 —> system favours NN’s same direction spin (ferromagnet), J>0 —> anti-ferromagnet
+    - Note: not using SI units in computation , (σ =±ℏ/2)
+    - Note: real magnetic system, spin can be in any direction —>crystal lattice leads to preferred directions —> ‘spin-orbit’ coupling
+    - Note: Ising model can be used to model any system where each lattices site has two possible states
+ - Statistical Physics 
+    - Probability of state occurring = p = (1/Z).(exp (−H/kBT))
+    - Partition function (Z) encodes other observables: Z = Σexp (−H/kBT), sum over all states
+        - U = <H> = - ∂ln(Z)/∂β  = (1/Z).ΣH.exp(−H/k_B.T), β = 1/kBT
+        - F = −kBT ln (Z) : Helmholtz free energy
+            - dF = −SdT + MdB
+            - S = ∂F/∂T
+                - S = −k_B.Σp.ln(p) , ‘Shannon Entropy
+            - M = ∂F/∂B
+                - M = Σ <σ> = ∂<H>/∂B 
+ - Single site exact solution
+    - H = -Bσ = ±B , (σ = ±1)
+    - Z = exp (−B/kBT) + exp (B/k_B.T)
+    - <σ> = (1/Z). Σσ.exp(−H/k_B.T) = tanh (B/k_B.T)
+    - Exercise in notebook?
+ - Mean-Field Theory
+    - Assume each site experiences NN’s effects as an average effective energy
+    - H = − ΣB_eff.σ_i , B_eff = B + J.<σ>.z , z = No. Neighbours
+    - Each spin equivalent on average, each neighbour has same average spin
+    - 2D-square-lattice —> B_eff = B + 4.J.<σ>	
+    - From single site equation, <σ> = tanh (B_eff /k_B.T) = tanh (B + 4.J.<σ> /k_B.T)
+        - Transendental equation
+        - If parameter are such that zJ/kBT > 1, in addition to trivial sol. <σ> = 0, there are two others <σ> > 0 & <σ> < 0
+            - System will spontaneously choose of these solutions <—> ferromagnet with spontaneous magnetic moment
+            - This happens in the approx solution at T_c = z.J/k_B 
+            - Example of Symmetry Breaking
+
+## Ising Exercise powerpoints
+ - Metrolopolis Algorithms
+    - 1: Initialise random starting configuration
+    - 2: Choose one site randomly, calculate energy change of system if spin flipped
+    - 3: If energy reduced --> flip spin, If not --> generate random number 0<p<1, flip if p<exp(-k_b.t.delta_E), [flip with probability = boltzman factor] 
+    - 4: Iterate steps 2 and 3 until maximum number of monte carlo (MC) steps reached, observables calculated from all accepted configurations
+ - Things to calulcate
+    - Running time as function of size of the box
+    - Running time as function of total MC steps
+    - deviations of numerically calulcated magnetisation from analytical solution (SEE [https://en.wikipedia.org/wiki/Square_lattice_Ising_model#Exact_solution)](https://en.wikipedia.org/wiki/Square_lattice_Ising_model#Exact_solution)
+    - characteristic configurations patterns for different temperatures
+    - exploit finite size scaling
+
+## Monte Carlo Method Videos 
+ - [https://www.youtube.com/watch?v=OgO1gpXSUzU](https://www.youtube.com/watch?v=OgO1gpXSUzU)
+ - [https://www.youtube.com/watch?v=EaR3C4e600k](https://www.youtube.com/watch?v=EaR3C4e600k)
+ - Basically random sampling and using law of large numbers (as no.trials increases --> average of samples converges to true expected value)
+
+
