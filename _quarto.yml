@@ -10,13 +10,17 @@ website:
     logo: img/logo.png
     style: "docked"
     search: true
-    collapse-level: 1
+    collapse-level: 2
     contents:
       - index.qmd
+      - text: "Main Code"
+        collapse: true
+        contents:
+          - main_code_text.qmd
+          - analysis_text.qmd
       - week1.qmd
-      - notebook.ipynb
       - week2.qmd
-      
+      - week3.qmd
 
 
 

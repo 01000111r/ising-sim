@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>week2 – Minimal Quarto Lab Book</title>
+<title>week3 – Minimal Quarto Lab Book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -79,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./week2.html">Week 2</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./week3.html">Week 3</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -141,13 +141,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./week2.html" class="sidebar-item-text sidebar-link active">
+  <a href="./week2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 2</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./week3.html" class="sidebar-item-text sidebar-link">
+  <a href="./week3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Week 3</span></a>
   </div>
 </li>
@@ -161,10 +161,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-2" id="toc-week-2" class="nav-link active" data-scroll-target="#week-2">Week 2</a>
+  <li><a href="#week-3" id="toc-week-3" class="nav-link active" data-scroll-target="#week-3">Week 3</a>
   <ul class="collapse">
-  <li><a href="#pdf-session-2" id="toc-pdf-session-2" class="nav-link" data-scroll-target="#pdf-session-2">PDF: Session 2</a></li>
-  <li><a href="#ideas-for-how-to-orient-project" id="toc-ideas-for-how-to-orient-project" class="nav-link" data-scroll-target="#ideas-for-how-to-orient-project">Ideas for how to orient Project</a></li>
+  <li><a href="#meeting" id="toc-meeting" class="nav-link" data-scroll-target="#meeting">Meeting</a></li>
+  <li><a href="#coding-plan" id="toc-coding-plan" class="nav-link" data-scroll-target="#coding-plan">Coding Plan</a></li>
+  <li><a href="#final-meeting" id="toc-final-meeting" class="nav-link" data-scroll-target="#final-meeting">Final Meeting</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -175,41 +176,39 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="week-2" class="level1">
-<h1>Week 2</h1>
-<section id="pdf-session-2" class="level2">
-<h2 class="anchored" data-anchor-id="pdf-session-2">PDF: Session 2</h2>
-<ul>
-<li>Critical exponents
-<ul>
-<li>critical behaviour relates to what happens around the critical temperature</li>
-<li>critical exponent defines how a certain parameter grows around the critical temperature to first order in exponent</li>
-</ul></li>
-<li>Did exercies calculating theoretical critical exponnets for spin moment (β) and susceplitibility (γ) with and without field and the exponent for changing magnetic field (δ) with constant critical temperature</li>
-<li>Scaling relations
-<ul>
-<li>critical exponents can have relations to one another, α + 2β + γ = 2, γ = β(δ − 1)</li>
-</ul></li>
-<li>Scale -althought a mean field theory, seems to be more mathematically exact with higher dimensionality</li>
-<li>Used in calculating/understanding critical exponents
-<ul>
-<li><a href="https://www2.ph.ed.ac.uk/~mevans/sp/sp10.pdf">Edinburgh notes on mean field theory - Ising model</a></li>
-<li><a href="https://perso.crans.org/sylvainrey/Biblio%20Physique/Physique/Physique%20statistique/%5BYeomans%5D%20Statistical%20Mechanics%20of%20Phase%20Transitions.pdf">Statistical Mechanics of phase transitions</a></li>
-</ul></li>
-</ul>
+<section id="week-3" class="level1">
+<h1>Week 3</h1>
+<section id="meeting" class="level2">
+<h2 class="anchored" data-anchor-id="meeting">Meeting</h2>
+<pre><code>- Kurtosis/ Binder Parameter 
+    - measure of "gausian'ness" 
+    - can capture change in distribution
+- Finite size scaling
+    - plot different size systems on kurtosis vs temp
+    - all approach same value near criticality
+    - can be used to approximate critical temperature
+- Applying slight field can make system prefer one spin direction
+-Numba package
+    - Just in time computation
+    - @numba.njit decorator above function
+- Critical slowing down
+    - approaching critical point from above, system takes longer to be change
+    - Cluster move algorithms
+        - Swendsen
+        - Woldd
+    - Locality, equilibrium
+- Measuring cluster sizes?</code></pre>
 </section>
-<section id="ideas-for-how-to-orient-project" class="level2">
-<h2 class="anchored" data-anchor-id="ideas-for-how-to-orient-project">Ideas for how to orient Project</h2>
-<pre><code>- Running time calibration
-    - Running time as function of size of the box
-    - Running time as function of total MC steps
-- deviations of numerically calulcated magnetisation from analytical solution (SEE [wikipedia: Exact_solution](https://en.wikipedia.org/wiki/Square_lattice_Ising_model#Exact_solution))
-- Critical exponents
-    - good experimental work on finding critical exponents using monte carlo methods
-    - find for higher dimensions
-- Later Ideas  
-    - Universality
-    - Renormalisation group </code></pre>
+<section id="coding-plan" class="level2">
+<h2 class="anchored" data-anchor-id="coding-plan">Coding Plan</h2>
+<pre><code>- Get plots for observables vs iterations
+- understand how to extract kurtosis efficiently for different temperatures
+- get to a plot of kurtosis vs temperature with different size systems</code></pre>
+<p>##Coding work - reworked the main code to simulate for different sizes of system –&gt; different temperatures - used namba to speed up alot of functions - created plotting functions -statistic vs temperature — different system sizes -obvservable vs iteration —</p>
+</section>
+<section id="final-meeting" class="level2">
+<h2 class="anchored" data-anchor-id="final-meeting">Final Meeting</h2>
+<pre><code>- adapted code to save data</code></pre>
 
 
 </section>

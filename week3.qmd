@@ -1,0 +1,43 @@
+# Week 3
+
+## Meeting
+    - Kurtosis/ Binder Parameter 
+        - measure of "gausian'ness" 
+        - can capture change in distribution
+    - Finite size scaling
+        - plot different size systems on kurtosis vs temp
+        - all approach same value near criticality
+        - can be used to approximate critical temperature
+    - Applying slight field can make system prefer one spin direction
+    -Numba package
+        - Just in time computation
+        - @numba.njit decorator above function
+    - Critical slowing down
+        - approaching critical point from above, system takes longer to be change
+        - Cluster move algorithms
+            - Swendsen
+            - Woldd
+        - Locality, equilibrium
+    - Measuring cluster sizes?
+
+## Coding Plan
+    - Get plots for observables vs iterations
+    - understand how to extract kurtosis efficiently for different temperatures
+    - get to a plot of kurtosis vs temperature with different size systems
+
+##Coding work
+    - reworked the main code to simulate for different sizes of system --> different temperatures
+    - used namba to speed up alot of functions
+    - created plotting functions
+        -statistic vs temperature --- different system sizes
+        -obvservable vs iteration --- 
+
+
+## Final Meeting
+    - adapted code to save data
+
+
+
+
+
+    

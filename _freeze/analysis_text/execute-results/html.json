@@ -1,0 +1,12 @@
+{
+  "hash": "31188b946a02a6c6d0da1b28f7808fb8",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Analysis Code\"\nformat: html\nexecute:\n  eval: false\n  echo: true  # Ensures code still appears\n  freeze: auto  # Prevents execution unless manually triggered\n\n---\n\n::: {#0a52de4e .cell execution_count=1}\n``` {.python .cell-code}\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport glob \n# import natsort\n\n# files = natsort.realsorted(glob.glob(\"data/*\"))\nfor N in 8,16,32:\n    files = glob.glob(f\"data/*N{N}*\")\n    print(files)\n    Ts = []\n    bs = []\n    for f in files:\n        data = np.load(f)\n        print(f) #use split to get N and T\n        T = float(f.split(\"T\")[1].split(\"N\")[0])\n        N = int(f.split(\"N\")[1].split(\".npz\")[0])\n        energy = data['energy']\n        mag = data['magnetisation']\n        \n        binder = 1-np.mean(mag**4)/3./np.mean(mag**2)**2\n        Ts.append(T)\n        bs.append(binder)\n        \n    plt.scatter(Ts,bs)\nplt.show()\n```\n:::\n\n\n",
+    "supporting": [
+      "analysis_text_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

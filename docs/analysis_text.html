@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>week2 – Minimal Quarto Lab Book</title>
+<title>Analysis Code – Minimal Quarto Lab Book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -79,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./week2.html">Week 2</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./main_code_text.html">Main Code</a></li><li class="breadcrumb-item"><a href="./analysis_text.html">Analysis Code</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -127,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analysis_text.html" class="sidebar-item-text sidebar-link">
+  <a href="./analysis_text.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Analysis Code</span></a>
   </div>
 </li>
@@ -141,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./week2.html" class="sidebar-item-text sidebar-link active">
+  <a href="./week2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 2</span></a>
   </div>
 </li>
@@ -156,64 +190,60 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#week-2" id="toc-week-2" class="nav-link active" data-scroll-target="#week-2">Week 2</a>
-  <ul class="collapse">
-  <li><a href="#pdf-session-2" id="toc-pdf-session-2" class="nav-link" data-scroll-target="#pdf-session-2">PDF: Session 2</a></li>
-  <li><a href="#ideas-for-how-to-orient-project" id="toc-ideas-for-how-to-orient-project" class="nav-link" data-scroll-target="#ideas-for-how-to-orient-project">Ideas for how to orient Project</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./main_code_text.html">Main Code</a></li><li class="breadcrumb-item"><a href="./analysis_text.html">Analysis Code</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Analysis Code</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="week-2" class="level1">
-<h1>Week 2</h1>
-<section id="pdf-session-2" class="level2">
-<h2 class="anchored" data-anchor-id="pdf-session-2">PDF: Session 2</h2>
-<ul>
-<li>Critical exponents
-<ul>
-<li>critical behaviour relates to what happens around the critical temperature</li>
-<li>critical exponent defines how a certain parameter grows around the critical temperature to first order in exponent</li>
-</ul></li>
-<li>Did exercies calculating theoretical critical exponnets for spin moment (β) and susceplitibility (γ) with and without field and the exponent for changing magnetic field (δ) with constant critical temperature</li>
-<li>Scaling relations
-<ul>
-<li>critical exponents can have relations to one another, α + 2β + γ = 2, γ = β(δ − 1)</li>
-</ul></li>
-<li>Scale -althought a mean field theory, seems to be more mathematically exact with higher dimensionality</li>
-<li>Used in calculating/understanding critical exponents
-<ul>
-<li><a href="https://www2.ph.ed.ac.uk/~mevans/sp/sp10.pdf">Edinburgh notes on mean field theory - Ising model</a></li>
-<li><a href="https://perso.crans.org/sylvainrey/Biblio%20Physique/Physique/Physique%20statistique/%5BYeomans%5D%20Statistical%20Mechanics%20of%20Phase%20Transitions.pdf">Statistical Mechanics of phase transitions</a></li>
-</ul></li>
-</ul>
-</section>
-<section id="ideas-for-how-to-orient-project" class="level2">
-<h2 class="anchored" data-anchor-id="ideas-for-how-to-orient-project">Ideas for how to orient Project</h2>
-<pre><code>- Running time calibration
-    - Running time as function of size of the box
-    - Running time as function of total MC steps
-- deviations of numerically calulcated magnetisation from analytical solution (SEE [wikipedia: Exact_solution](https://en.wikipedia.org/wiki/Square_lattice_Ising_model#Exact_solution))
-- Critical exponents
-    - good experimental work on finding critical exponents using monte carlo methods
-    - find for higher dimensions
-- Later Ideas  
-    - Universality
-    - Renormalisation group </code></pre>
+    
+  
+    
+  </div>
+  
 
 
-</section>
-</section>
+</header>
+
+
+<div id="0a52de4e" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># import natsort</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># files = natsort.realsorted(glob.glob("data/*"))</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> <span class="dv">8</span>,<span class="dv">16</span>,<span class="dv">32</span>:</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    files <span class="op">=</span> glob.glob(<span class="ss">f"data/*N</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">*"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(files)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    Ts <span class="op">=</span> []</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    bs <span class="op">=</span> []</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> f <span class="kw">in</span> files:</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> np.load(f)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(f) <span class="co">#use split to get N and T</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        T <span class="op">=</span> <span class="bu">float</span>(f.split(<span class="st">"T"</span>)[<span class="dv">1</span>].split(<span class="st">"N"</span>)[<span class="dv">0</span>])</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        N <span class="op">=</span> <span class="bu">int</span>(f.split(<span class="st">"N"</span>)[<span class="dv">1</span>].split(<span class="st">".npz"</span>)[<span class="dv">0</span>])</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        energy <span class="op">=</span> data[<span class="st">'energy'</span>]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        mag <span class="op">=</span> data[<span class="st">'magnetisation'</span>]</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        binder <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>np.mean(mag<span class="op">**</span><span class="dv">4</span>)<span class="op">/</span><span class="fl">3.</span><span class="op">/</span>np.mean(mag<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        Ts.append(T)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        bs.append(binder)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    plt.scatter(Ts,bs)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
