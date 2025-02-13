@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 from numba import njit
 import scipy.stats 
 import tqdm
+import math
 
 #----------------------------------------------------------------------
 ##  BLOCK OF FUNCTIONS USED IN THE MAIN CODE
@@ -19,36 +20,45 @@ import tqdm
 
 def initialstate(N):   
     ''' generates a random spin configuration for initial condition'''
-    state = 2*np.random.randint(2, size=(N,N))-1
-    return state
+    return 2*np.random.randint(2, size=(N,N))-1
 
 @njit
 def mcmove(config, beta, N):
-    '''Monte Carlo move using Metropolis algorithm '''
-    for i in range(N):
-        for j in range(N):
-                a = np.random.randint(0, N)
-                b = np.random.randint(0, N)
-                s =  config[a, b]
-                nb = config[(a+1)%N,b] + config[a,(b+1)%N] + config[(a-1)%N,b] + config[a,(b-1)%N]
-                cost = 2*s*nb
-                if cost < 0:
-                    s *= -1
-                elif rand() < np.exp(-cost*beta):
-                    s *= -1
-                config[a, b] = s
+    """
+    Performs one Monte Carlo sweep (N*N attempted moves)
+    using the Metropolis algorithm. To reduce the overhead of calling
+    the random number generator inside tight loops, we pre–generate
+    all random numbers for the sweep.
+    """
+    num_moves = N * N
+    # Pre–generate random numbers:
+    r1 = np.random.randint(0, N, num_moves)
+    r2 = np.random.randint(0, N, num_moves)
+    r3 = np.random.random(num_moves)
+    
+    for idx in range(num_moves):
+        a = r1[idx]
+        b = r2[idx]
+        s = config[a, b]
+        # Sum the four nearest neighbors (using periodic boundary conditions)
+        nb = config[(a+1) % N, b] + config[a, (b+1) % N] + config[(a-1) % N, b] + config[a, (b-1) % N]
+        cost = 2 * s * nb
+        # Accept the flip if it lowers energy, or with the Boltzmann probability otherwise.
+        if cost < 0 or r3[idx] < math.exp(-cost * beta):
+            config[a, b] = -s
     return config
 
 @njit
 def calcEnergy(config, N):
     '''Energy of a given configuration'''
     energy = 0
-    for i in range(len(config)):
-        for j in range(len(config)):
+    for i in range(N):
+        for j in range(N):
             S = config[i,j]
             nb = config[(i+1)%N, j] + config[i,(j+1)%N] + config[(i-1)%N, j] + config[i,(j-1)%N]
             energy += -nb*S
-    return energy/4.
+            energy -= config[i, j] * (config[(i+1) % N, j] + config[i, (j+1) % N])
+    return energy/4
 
 @njit
 def calcMag(config):
@@ -58,12 +68,12 @@ def calcMag(config):
 
 
 ## change these parameters for a smaller (faster) simulation 
-nt      = 10      #  number of temperature points
-n       = [8,16,32]         #  size of the lattice, N x N
-eqSteps = 1024       #  number of MC sweeps for equilibration
-mcSteps = 1024*10       #  number of MC sweeps for calculation
+nt      = 50      #  number of temperature points
+n       = [16,32,64]         #  size of the lattice, N x N
+eqSteps = 1024*100      #  number of MC sweeps for equilibration
+mcSteps = 1024*100     #  number of MC sweeps for calculation
 
-T       = np.linspace(1.53, 3.28, nt)  #good spread tro show near temperature 3.28
+T       = np.linspace(1.75, 2.75, nt)  #good spread tro show near temperature 3.28
 E,M,C,X = np.zeros(nt), np.zeros(nt), np.zeros(nt), np.zeros(nt)
 #n1, n2  = 1.0/(mcSteps*n*N), 1.0/(mcSteps*mcSteps*N*N) 
 # divide by number of samples, and by system size to get intensive values
@@ -108,7 +118,7 @@ def create_data():
             print(T[tt],N,m_i.mean()/N**2)
             # M.append(m_i)
             # E.append(e_i)
-            np.savez(f"data/run-T{T[tt]}N{N}.npz",energy=e_i,magnetisation=m_i)
+            np.savez(f"data3/run-T{T[tt]}N{N}.npz",energy=e_i,magnetisation=m_i)
             #E[tt] = n1*E1
             #M[tt] = n1*M1
             #C[tt] = (n1*E2 - n2*E1*E1)*iT2
@@ -120,85 +130,87 @@ def create_data():
 
     
 create_data()
+
+
 # M_final, E_final = creat_data()
 
 
-def stat_plot_sizes(stat_func, stat_name="Statistic"):
-    """
-    stat_func: a function like kurtosis, np.mean, etc.
-    stat_name: label to show on the y-axis
-    """
+# def stat_plot_sizes(stat_func, stat_name="Statistic"):
+#     """
+#     stat_func: a function like kurtosis, np.mean, etc.
+#     stat_name: label to show on the y-axis
+#     """
     
-    # --- Plot Energy statistic vs Temperature ---
+#     # --- Plot Energy statistic vs Temperature ---
     
-    plt.figure(figsize=(8, 5))
-    for a in range(3):
-        # Compute the statistic for each temperature
-        stat_values_E = [stat_func(energy_samples) for energy_samples in E_final[a]]
+#     plt.figure(figsize=(8, 5))
+#     for a in range(3):
+#         # Compute the statistic for each temperature
+#         stat_values_E = [stat_func(energy_samples) for energy_samples in E_final[a]]
         
-        # Plot
-        plt.plot(T, stat_values_E, marker='o', label=f'N={n[a]}')
+#         # Plot
+#         plt.plot(T, stat_values_E, marker='o', label=f'N={n[a]}')
     
-    plt.xlabel("Temperature (T)", fontsize=14)
-    plt.ylabel(f"{stat_name} of Energy", fontsize=14)
-    plt.title(f"{stat_name} of Energy vs Temperature", fontsize=16)
-    plt.legend()
-    plt.grid(True)
-    plt.show()
+#     plt.xlabel("Temperature (T)", fontsize=14)
+#     plt.ylabel(f"{stat_name} of Energy", fontsize=14)
+#     plt.title(f"{stat_name} of Energy vs Temperature", fontsize=16)
+#     plt.legend()
+#     plt.grid(True)
+#     plt.show()
     
-    # --- Plot Magnetization statistic vs Temperature ---
-    plt.figure(figsize=(8, 5))
-    for a in range(3):
-        # Compute the statistic for each temperature
-        stat_values_M = [stat_func(mag_samples) for mag_samples in M_final[a]]
+#     # --- Plot Magnetization statistic vs Temperature ---
+#     plt.figure(figsize=(8, 5))
+#     for a in range(3):
+#         # Compute the statistic for each temperature
+#         stat_values_M = [stat_func(mag_samples) for mag_samples in M_final[a]]
         
-        # Plot
-        plt.plot(T, stat_values_M, marker='s', label=f'N={n[a]}')
+#         # Plot
+#         plt.plot(T, stat_values_M, marker='s', label=f'N={n[a]}')
     
-    plt.xlabel("Temperature (T)", fontsize=14)
-    plt.ylabel(f"{stat_name} of Magnetization", fontsize=14)
-    plt.title(f"{stat_name} of Magnetization vs Temperature", fontsize=16)
-    plt.legend()
-    plt.grid(True)
-    plt.show()
+#     plt.xlabel("Temperature (T)", fontsize=14)
+#     plt.ylabel(f"{stat_name} of Magnetization", fontsize=14)
+#     plt.title(f"{stat_name} of Magnetization vs Temperature", fontsize=16)
+#     plt.legend()
+#     plt.grid(True)
+#     plt.show()
 
-def plot_iterations_for_temperature(Final_list, T, temp_index, size_index, property_name):
-    """
-    Plots either Magnetization or Energy vs iteration for all lattice sizes
-    at a chosen temperature index.
+# def plot_iterations_for_temperature(Final_list, T, temp_index, size_index, property_name):
+#     """
+#     Plots either Magnetization or Energy vs iteration for all lattice sizes
+#     at a chosen temperature index.
     
-    Parameters:
-    -----------
-    M_final      : list of lists of lists
-                   M_final[i][j] is the magnetization time-series for 
-                   lattice size n_list[i] at T[j].
-    E_final      : list of lists of lists
-                   E_final[i][j] is the energy time-series for 
-                   lattice size n_list[i] at T[j].
-    n_list       : list of lattice sizes used (e.g. [8, 16, 32])
-    T            : array or list of temperatures
-    temp_index   : int
-                   Index in T for which we want to plot property vs iteration
-    property_name: str, optional
-                   'Magnetization' or 'Energy' (default is 'Magnetization')
-    """
-    # Create figure
-    plt.figure(figsize=(8, 5))
+#     Parameters:
+#     -----------
+#     M_final      : list of lists of lists
+#                    M_final[i][j] is the magnetization time-series for 
+#                    lattice size n_list[i] at T[j].
+#     E_final      : list of lists of lists
+#                    E_final[i][j] is the energy time-series for 
+#                    lattice size n_list[i] at T[j].
+#     n_list       : list of lattice sizes used (e.g. [8, 16, 32])
+#     T            : array or list of temperatures
+#     temp_index   : int
+#                    Index in T for which we want to plot property vs iteration
+#     property_name: str, optional
+#                    'Magnetization' or 'Energy' (default is 'Magnetization')
+#     """
+#     # Create figure
+#     plt.figure(figsize=(8, 5))
     
     
-    data = M_final[size_index][temp_index]
-    ylabel = property_name
+#     data = M_final[size_index][temp_index]
+#     ylabel = property_name
 
-    # Plot data vs iteration
-    plt.plot(range(len(data)), data, label=f'N = {n[size_index]}')
+#     # Plot data vs iteration
+#     plt.plot(range(len(data)), data, label=f'N = {n[size_index]}')
     
-    # Labeling
-    plt.xlabel("Iteration", fontsize=12)
-    plt.ylabel(ylabel, fontsize=12)
-    plt.title(f"{ylabel} vs. Iteration at T = {T[temp_index]:.2f}", fontsize=14)
-    plt.legend()
-    plt.grid(True)
-    plt.show()
+#     # Labeling
+#     plt.xlabel("Iteration", fontsize=12)
+#     plt.ylabel(ylabel, fontsize=12)
+#     plt.title(f"{ylabel} vs. Iteration at T = {T[temp_index]:.2f}", fontsize=14)
+#     plt.legend()
+#     plt.grid(True)
+#     plt.show()
 
 
 
@@ -206,8 +218,8 @@ def plot_iterations_for_temperature(Final_list, T, temp_index, size_index, prope
 
 
 
-# plot_iterations_for_temperature(M_final, T, 2, 2, "Magnetisation")
-#stat_plot_sizes(kurtosis, "Kurtosis")
+# # plot_iterations_for_temperature(M_final, T, 2, 2, "Magnetisation")
+# #stat_plot_sizes(kurtosis, "Kurtosis")
 
 
 
