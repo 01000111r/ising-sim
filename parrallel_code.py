@@ -8,8 +8,7 @@ Created on Thu Feb  6 14:55:37 2025
 
 from __future__ import division
 import numpy as np
-import matplotlib.pyplot as plt
-from numba import njit, prange
+from numba import njit
 import math
 import os
 import multiprocessing as mp
@@ -192,7 +191,7 @@ def create_data(output_folder, nt, n_list, eqSteps, mcSteps, T_arr):
     completed_tasks = 0
     
     # Create a pool of workers equal to the number of available CPU cores.
-    pool = mp.Pool(processes=5)
+    pool = mp.Pool(processes=6)
     
     # Use functools.partial to inject the output_folder argument into simulate_temp.
     sim_func = partial(simulate_temp, output_folder=output_folder)
@@ -211,11 +210,11 @@ def create_data(output_folder, nt, n_list, eqSteps, mcSteps, T_arr):
 
 if __name__ == '__main__':
     # *** Set the output folder name and simulation parameters here ***
-    output_folder = "data8"       # Folder name where data will be saved
-    nt          = 50           # Number of temperature points
+    output_folder = "data9"       # Folder name where data will be saved
+    nt          = 100           # Number of temperature points
     n_list      = [16, 32, 64]       # List of lattice sizes (N x N)
-    eqSteps     = 1024*100    # Number of Monte Carlo sweeps for equilibration
-    mcSteps     = 1024*100    # Number of Monte Carlo sweeps for measurements
+    eqSteps     = 1024*1000    # Number of Monte Carlo sweeps for equilibration
+    mcSteps     = 1024*1000          # Number of Monte Carlo sweeps for measurements
     T_arr       = np.linspace(1.75, 2.75, nt)  # Temperature array
     
     # Run the simulation with the specified parameters.

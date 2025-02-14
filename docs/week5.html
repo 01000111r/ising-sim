@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>week1 – Minimal Quarto Lab Book</title>
+<title>week5 – Minimal Quarto Lab Book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -79,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./week1.html">Week 1</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./week5.html">week5.html</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -135,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./week1.html" class="sidebar-item-text sidebar-link active">
+  <a href="./week1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 1</span></a>
   </div>
 </li>
@@ -159,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./week5.html" class="sidebar-item-text sidebar-link">
+  <a href="./week5.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">week5.html</span></a>
   </div>
 </li>
@@ -168,20 +168,8 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#week-1" id="toc-week-1" class="nav-link active" data-scroll-target="#week-1">Week 1</a>
-  <ul class="collapse">
-  <li><a href="#initial-meeting" id="toc-initial-meeting" class="nav-link" data-scroll-target="#initial-meeting">Initial meeting</a></li>
-  <li><a href="#pdf-session-1---key-concepts-and-background" id="toc-pdf-session-1---key-concepts-and-background" class="nav-link" data-scroll-target="#pdf-session-1---key-concepts-and-background">PDF: Session 1 - Key concepts and background</a></li>
-  <li><a href="#ising-exercise-powerpoints" id="toc-ising-exercise-powerpoints" class="nav-link" data-scroll-target="#ising-exercise-powerpoints">Ising Exercise powerpoints</a></li>
-  <li><a href="#monte-carlo-method-videos" id="toc-monte-carlo-method-videos" class="nav-link" data-scroll-target="#monte-carlo-method-videos">Monte Carlo Method Videos</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -189,142 +177,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="week-1" class="level1">
-<h1>Week 1</h1>
-<section id="initial-meeting" class="level2">
-<h2 class="anchored" data-anchor-id="initial-meeting">Initial meeting</h2>
-<ul>
-<li>Topics:
-<ul>
-<li>Renormalisation</li>
-<li>Critical exponents</li>
-<li>Scaling laws</li>
-<li>Phase transitions</li>
-<li>Clusters</li>
-<li>Fundamental model</li>
-<li>Metropolis algorithm</li>
-<li>BlueCrystal HPC</li>
-</ul></li>
-<li>Research and understand/experiment with code</li>
-<li>Aim idea: ‘create popular account using research as structure’</li>
-</ul>
-</section>
-<section id="pdf-session-1---key-concepts-and-background" class="level2">
-<h2 class="anchored" data-anchor-id="pdf-session-1---key-concepts-and-background">PDF: Session 1 - Key concepts and background</h2>
-<ul>
-<li>Intro
-<ul>
-<li>Monte Carlo sampling method</li>
-<li>Use Ising to model magnetism, understand magnetic phase transition</li>
-<li>Main: 2D-square lattice, investigate parameters close to phase transition</li>
-<li>Extra: exact solution 1D, Potts/XY models 2D</li>
-</ul></li>
-<li>Phase transitions
-<ul>
-<li>Van der Waals example, gas doesn’t resist being compressed —&gt; must have phase transition</li>
-<li>Magnetism
-<ul>
-<li>All sites spin up/down</li>
-<li>Neighbouring atoms favour same direction, absolute zero has ground states ,all down(m=-ve)/up(m=+ve)</li>
-<li>Above T=0, entropy favours random spin, high temperatures —&gt; p=1/2 for up/down —&gt; M=0 (zero external field)</li>
-<li>Critical temp T_c when M=0</li>
-</ul></li>
-<li>Other PT’s: superfluids, superconductors</li>
-<li>PT example of spontaneously-broken symmetry</li>
-</ul></li>
-<li>Ising Model
-<ul>
-<li>Each site assigned spin value σ = ±1 (up or down)</li>
-<li>Energy Hamiltonian, H = − Σ J.σ_i.σ_j − Σ B.σ_i , can be hard to calculate, N sites —&gt; 2^N configurations of system</li>
-<li>First Σ over all NN’s (2D - 4 bonds),
-<ul>
-<li>J: exchange energy,
-<ul>
-<li>J &lt; 0 —&gt; system favours NN’s same direction spin (ferromagnet), J&gt;0 —&gt; anti-ferromagnet</li>
-</ul></li>
-</ul></li>
-<li>Note: not using SI units in computation , (σ =±ℏ/2)</li>
-<li>Note: real magnetic system, spin can be in any direction —&gt;crystal lattice leads to preferred directions —&gt; ‘spin-orbit’ coupling</li>
-<li>Note: Ising model can be used to model any system where each lattices site has two possible states</li>
-</ul></li>
-<li>Statistical Physics
-<ul>
-<li>Probability of state occurring = p = (1/Z).(exp (−H/kBT))</li>
-<li>Partition function (Z) encodes other observables: Z = Σexp (−H/kBT), sum over all states
-<ul>
-<li>U = <h> = - ∂ln(Z)/∂β = (1/Z).ΣH.exp(−H/k_B.T), β = 1/kBT</h></li>
-<li>F = −kBT ln (Z) : Helmholtz free energy
-<ul>
-<li>dF = −SdT + MdB</li>
-<li>S = ∂F/∂T
-<ul>
-<li>S = −k_B.Σp.ln(p) , ’Shannon Entropy</li>
-</ul></li>
-<li>M = ∂F/∂B
-<ul>
-<li>M = Σ &lt;σ&gt; = ∂<h>/∂B</h></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li>Single site exact solution
-<ul>
-<li>H = -Bσ = ±B , (σ = ±1)</li>
-<li>Z = exp (−B/kBT) + exp (B/k_B.T)</li>
-<li>&lt;σ&gt; = (1/Z). Σσ.exp(−H/k_B.T) = tanh (B/k_B.T)</li>
-<li>Exercise in notebook?</li>
-</ul></li>
-<li>Mean-Field Theory
-<ul>
-<li>Assume each site experiences NN’s effects as an average effective energy</li>
-<li>H = − ΣB_eff.σ_i , B_eff = B + J.&lt;σ&gt;.z , z = No.&nbsp;Neighbours</li>
-<li>Each spin equivalent on average, each neighbour has same average spin</li>
-<li>2D-square-lattice —&gt; B_eff = B + 4.J.&lt;σ&gt;<br>
-</li>
-<li>From single site equation, &lt;σ&gt; = tanh (B_eff /k_B.T) = tanh (B + 4.J.&lt;σ&gt; /k_B.T)
-<ul>
-<li>Transendental equation</li>
-<li>If parameter are such that zJ/kBT &gt; 1, in addition to trivial sol. &lt;σ&gt; = 0, there are two others &lt;σ&gt; &gt; 0 &amp; &lt;σ&gt; &lt; 0
-<ul>
-<li>System will spontaneously choose of these solutions &lt;—&gt; ferromagnet with spontaneous magnetic moment</li>
-<li>This happens in the approx solution at T_c = z.J/k_B</li>
-<li>Example of Symmetry Breaking</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-</section>
-<section id="ising-exercise-powerpoints" class="level2">
-<h2 class="anchored" data-anchor-id="ising-exercise-powerpoints">Ising Exercise powerpoints</h2>
-<ul>
-<li>Metrolopolis Algorithms
-<ul>
-<li>1: Initialise random starting configuration</li>
-<li>2: Choose one site randomly, calculate energy change of system if spin flipped</li>
-<li>3: If energy reduced –&gt; flip spin, If not –&gt; generate random number 0&lt;p&lt;1, flip if p&lt;exp(-k_b.t.delta_E), [flip with probability = boltzman factor]</li>
-<li>4: Iterate steps 2 and 3 until maximum number of monte carlo (MC) steps reached, observables calculated from all accepted configurations</li>
-</ul></li>
-<li>Things to calulcate
-<ul>
-<li>Running time as function of size of the box</li>
-<li>Running time as function of total MC steps</li>
-<li>deviations of numerically calulcated magnetisation from analytical solution (SEE <a href="https://en.wikipedia.org/wiki/Square_lattice_Ising_model#Exact_solution">https://en.wikipedia.org/wiki/Square_lattice_Ising_model#Exact_solution)</a></li>
-<li>characteristic configurations patterns for different temperatures</li>
-<li>exploit finite size scaling</li>
-</ul></li>
-</ul>
-</section>
-<section id="monte-carlo-method-videos" class="level2">
-<h2 class="anchored" data-anchor-id="monte-carlo-method-videos">Monte Carlo Method Videos</h2>
-<ul>
-<li><a href="https://www.youtube.com/watch?v=OgO1gpXSUzU">https://www.youtube.com/watch?v=OgO1gpXSUzU</a></li>
-<li><a href="https://www.youtube.com/watch?v=EaR3C4e600k">https://www.youtube.com/watch?v=EaR3C4e600k</a></li>
-<li>Basically random sampling and using law of large numbers (as no.trials increases –&gt; average of samples converges to true expected value)</li>
-</ul>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
