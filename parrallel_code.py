@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Feb  6 14:55:37 2025
 
-@author: giancarloramirez
-"""
 
 from __future__ import division
 import numpy as np
@@ -14,26 +10,32 @@ import os
 import multiprocessing as mp
 from functools import partial
 
-#----------------------------------------------------------------------
-##  CORE FUNCTIONS FOR THE SIMULATION
-#----------------------------------------------------------------------
+# state config
 
-def initialstate(N):
+def initialstate(N, dim):
     """
     Generates a random spin configuration for the initial condition.
     Spins are ±1.
+    
+    Parameters:
+      N   : Lattice size (for 2D: shape (N,N); for 3D: shape (N,N,N))
+      dim : Dimension (2 or 3)
     """
-    return 2 * np.random.randint(0, 2, size=(N, N)) - 1
+    if dim == 2:
+        return 2 * np.random.randint(0, 2, size=(N, N)) - 1
+    elif dim == 3:
+        return 2 * np.random.randint(0, 2, size=(N, N, N)) - 1
+    else:
+        raise ValueError("Dimension must be 2 or 3.")
+
+# monte carlo moves
 
 @njit
-def mcmove(config, beta, N):
+def mcmove2d(config, beta, N):
     """
-    Performs one Monte Carlo sweep (N*N attempted moves)
-    using the Metropolis algorithm. Pre-generates random numbers
-    for all moves in the sweep.
+    Performs one Monte Carlo sweep for a 2D configuration.
     """
     num_moves = N * N
-    # Pre-generate random numbers for positions and acceptance:
     r1 = np.empty(num_moves, dtype=np.int64)
     r2 = np.empty(num_moves, dtype=np.int64)
     r3 = np.empty(num_moves, dtype=np.float64)
@@ -46,142 +48,201 @@ def mcmove(config, beta, N):
         a = r1[idx]
         b = r2[idx]
         s = config[a, b]
-        # Sum over the four nearest neighbors with periodic boundaries:
-        nb = config[(a + 1) % N, b] + config[a, (b + 1) % N] + \
-             config[(a - 1) % N, b] + config[a, (b - 1) % N]
+        # Sum over four nearest neighbors with periodic boundaries.
+        nb = (config[(a + 1) % N, b] + config[a, (b + 1) % N] +
+              config[(a - 1) % N, b] + config[a, (b - 1) % N])
         cost = 2 * s * nb
         if cost < 0 or r3[idx] < math.exp(-cost * beta):
             config[a, b] = -s
     return config
 
 @njit
-def calcEnergy(config, N):
+def mcmove3d(config, beta, N):
     """
-    Calculates the energy of the configuration.
-    This version sums over each spin interacting with its right and down neighbor
-    (with periodic boundaries) so that each bond is counted only once.
+    Performs one Monte Carlo sweep for a 3D configuration.
+    """
+    num_moves = N * N * N
+    r1 = np.empty(num_moves, dtype=np.int64)
+    r2 = np.empty(num_moves, dtype=np.int64)
+    r3 = np.empty(num_moves, dtype=np.int64)
+    r4 = np.empty(num_moves, dtype=np.float64)
+    for k in range(num_moves):
+        r1[k] = np.random.randint(0, N)
+        r2[k] = np.random.randint(0, N)
+        r3[k] = np.random.randint(0, N)
+        r4[k] = np.random.random()
+    
+    for idx in range(num_moves):
+        x = r1[idx]
+        y = r2[idx]
+        z = r3[idx]
+        s = config[x, y, z]
+        # Sum over the six nearest neighbors in 3D (with periodic boundaries).
+        nb = (config[(x+1)%N, y, z] + config[(x-1)%N, y, z] +
+              config[x, (y+1)%N, z] + config[x, (y-1)%N, z] +
+              config[x, y, (z+1)%N] + config[x, y, (z-1)%N])
+        cost = 2 * s * nb
+        if cost < 0 or r4[idx] < math.exp(-cost * beta):
+            config[x, y, z] = -s
+    return config
+
+
+# Energy calc
+
+
+@njit
+def calcEnergy2d(config, N):
+    """
+    Calculates the energy for a 2D configuration.
+    Only right and down neighbors are summed to avoid double counting.
     """
     energy = 0
     for i in range(N):
         for j in range(N):
             S = config[i, j]
-            nb = config[(i + 1) % N, j] + config[i, (j + 1) % N] + \
-                 config[(i - 1) % N, j] + config[i, (j - 1) % N]
-            energy += -nb * S
-            energy -= config[i, j] * (config[(i + 1) % N, j] + config[i, (j + 1) % N])
-    return energy / 4
+            energy += -S * (config[i, (j+1)%N] + config[(i+1)%N, j])
+    return energy
 
 @njit
-def calcMag(config):
+def calcEnergy3d(config, N):
     """
-    Returns the magnetization (sum of all spins).
+    Calculates the energy for a 3D configuration.
+    Only neighbors in the positive directions are summed to avoid double counting.
+    """
+    energy = 0
+    for x in range(N):
+        for y in range(N):
+            for z in range(N):
+                S = config[x, y, z]
+                energy += -S * (config[(x+1)%N, y, z] +
+                                config[x, (y+1)%N, z] +
+                                config[x, y, (z+1)%N])
+    return energy
+
+# Magnetisation calc
+
+@njit
+def calcMag2d(config):
+    """
+    Returns the magnetisation (sum of all spins) for a 2D configuration.
     """
     return np.sum(config)
 
 @njit
-def run_simulation(config, beta, eqSteps, mcSteps, N):
+def calcMag3d(config, N):
     """
-    Consolidated simulation loop that runs equilibration followed by measurement.
-    Both loops are JIT–compiled, which minimizes Python–overhead.
+    Returns the magnetisation (sum of all spins) for a 3D configuration.
+    """
+    mag = 0
+    for x in range(N):
+        for y in range(N):
+            for z in range(N):
+                mag += config[x, y, z]
+    return mag
+
+
+# running code
+
+
+def run_simulation(config, beta, eqSteps, mcSteps, N, dim):
+    """
+    Runs equilibration followed by measurement sweeps.
+    Selects the appropriate functions based on the dimension.
     
     Parameters:
-      config  : 2D numpy array, the spin configuration.
+      config  : initial spin configuration.
       beta    : inverse temperature.
       eqSteps : number of equilibration sweeps.
       mcSteps : number of measurement sweeps.
       N       : lattice size.
+      dim     : simulation dimension (2 or 3).
       
     Returns:
-      m_i : 1D numpy array of magnetization measurements.
+      m_i : 1D numpy array of magnetisation measurements.
       e_i : 1D numpy array of energy measurements.
     """
-    # Equilibration phase
-    for _ in range(eqSteps):
-        mcmove(config, beta, N)
-        
-    # Allocate arrays for measurements
-    m_i = np.empty(mcSteps, dtype=np.float64)
-    e_i = np.empty(mcSteps, dtype=np.float64)
-    
-    # Measurement phase
-    for i in range(mcSteps):
-        mcmove(config, beta, N)
-        e_i[i] = calcEnergy(config, N)
-        m_i[i] = calcMag(config)
-        
-    return m_i, e_i
+    if dim == 2:
+        for _ in range(eqSteps):
+            mcmove2d(config, beta, N)
+        m_i = np.empty(mcSteps, dtype=np.float64)
+        e_i = np.empty(mcSteps, dtype=np.float64)
+        for i in range(mcSteps):
+            mcmove2d(config, beta, N)
+            e_i[i] = calcEnergy2d(config, N)
+            m_i[i] = calcMag2d(config)
+        return m_i, e_i
+    elif dim == 3:
+        for _ in range(eqSteps):
+            mcmove3d(config, beta, N)
+        m_i = np.empty(mcSteps, dtype=np.float64)
+        e_i = np.empty(mcSteps, dtype=np.float64)
+        for i in range(mcSteps):
+            mcmove3d(config, beta, N)
+            e_i[i] = calcEnergy3d(config, N)
+            m_i[i] = calcMag3d(config, N)
+        return m_i, e_i
+    else:
+        raise ValueError("Dimension must be 2 or 3.")
 
-#----------------------------------------------------------------------
-##  SIMULATION FUNCTION (to be run in parallel)
-#----------------------------------------------------------------------
-
-def simulate_temp(args, output_folder):
+def simulate_temp(args, output_folder, dim):
     """
-    Runs the simulation for a given lattice size and temperature.
-    Sets up the initial configuration, calls the consolidated simulation function,
-    computes susceptibility and specific heat from the measurement data,
-    and saves the resulting data to file.
+    Runs the simulation for a given lattice size and temperature, then saves the
+    raw measurement data. The output file name is modified to include the dimension.
     
     Parameters:
-      args : tuple (N, T_value, eqSteps, mcSteps)
-      output_folder : folder where the simulation data will be saved.
+      args          : tuple (N, T_value, eqSteps, mcSteps)
+      output_folder : folder to save the simulation data.
+      dim           : simulation dimension (2 or 3).
     """
     N, T_value, eqSteps, mcSteps = args
     beta = 1.0 / T_value
-    config = initialstate(N)
+    config = initialstate(N, dim)
     
-    # Run the simulation using the consolidated, JIT-compiled function.
-    m_i, e_i = run_simulation(config, beta, eqSteps, mcSteps, N)
+
+    m_i, e_i = run_simulation(config, beta, eqSteps, mcSteps, N, dim)
     
-    # Compute averages and fluctuations.
-    m_mean = np.mean(m_i)
-    m2_mean = np.mean(m_i**2)
-    e_mean = np.mean(e_i)
-    e2_mean = np.mean(e_i**2)
-    
-    # Compute susceptibility and specific heat using the fluctuation formulas.
-    susceptibility = (m2_mean - m_mean**2) * beta
-    specific_heat   = (e2_mean - e_mean**2) * beta**2
-    
-    # Save the results to file.
-    filename = os.path.join(output_folder, f"run-T{T_value:.3f}N{N}.npz")
+
+    filename = os.path.join(output_folder, f"run-T{T_value:.3f}N{N}D{dim}.npz")
     np.savez(filename,
              energy=e_i,
-             magnetisation=m_i,
-             susceptibility=susceptibility,
-             specific_heat=specific_heat)
+             magnetisation=m_i)
     
-    print(f"Finished: T={T_value:.3f}, N={N}, avg m/site={m_i.mean()/(N*N):.3f}")
-    return T_value, N, m_i, e_i, susceptibility, specific_heat
 
-#----------------------------------------------------------------------
-##  MAIN FUNCTION TO RUN ALL SIMULATIONS (in parallel)
-#----------------------------------------------------------------------
+    print(f"Finished: T={T_value:.3f}, N={N}, dim={dim}, avg m/site={m_i.mean()/(N**dim):.3f}")
+    return T_value, N, m_i, e_i
 
-def create_data(output_folder, nt, n_list, eqSteps, mcSteps, T_arr):
+
+
+def create_data(output_folder, nt, n_list, eqSteps, mcSteps, T_arr, dim):
     """
     Loops over all lattice sizes and temperatures, launching a simulation
-    for each case in parallel using a multiprocessing Pool.
+    for each case in parallel. The simulation parameters (including dimension)
+    are saved to the output folder.
     
-    The simulation parameters are saved in the specified output folder.
+    Parameters:
+      output_folder : folder where data and parameters are saved.
+      nt            : number of temperature points.
+      n_list        : list of lattice sizes.
+      eqSteps       : number of equilibration sweeps.
+      mcSteps       : number of measurement sweeps.
+      T_arr         : array of temperatures.
+      dim           : simulation dimension (2 or 3).
     """
-    # Create output directory if it doesn't exist.
     if os.path.exists(output_folder):
         print(f"Folder '{output_folder}' already exists.")
     else:
         os.makedirs(output_folder)
     
-    # Save simulation parameters to an NPZ file in the output folder.
     params_filepath = os.path.join(output_folder, "simulation_parameters.npz")
     np.savez(params_filepath,
              nt=nt,
              n_list=np.array(n_list),
              eqSteps=eqSteps,
              mcSteps=mcSteps,
-             T_arr=T_arr)
+             T_arr=T_arr,
+             dim=dim)
     print(f"Simulation parameters saved to {params_filepath}")
     
-    # Prepare a list of simulation tasks for each (N, T) combination.
     tasks = []
     for N in n_list:
         for T_val in T_arr:
@@ -190,13 +251,9 @@ def create_data(output_folder, nt, n_list, eqSteps, mcSteps, T_arr):
     total_tasks = len(tasks)
     completed_tasks = 0
     
-    # Create a pool of workers equal to the number of available CPU cores.
-    pool = mp.Pool(processes=6)
+    pool = mp.Pool(processes=5)
+    sim_func = partial(simulate_temp, output_folder=output_folder, dim=dim)
     
-    # Use functools.partial to inject the output_folder argument into simulate_temp.
-    sim_func = partial(simulate_temp, output_folder=output_folder)
-    
-    # Use imap_unordered to process tasks as soon as they are finished.
     for result in pool.imap_unordered(sim_func, tasks):
         completed_tasks += 1
         print(f"Progress: {completed_tasks}/{total_tasks} simulations completed.")
@@ -204,18 +261,15 @@ def create_data(output_folder, nt, n_list, eqSteps, mcSteps, T_arr):
     pool.close()
     pool.join()
 
-#----------------------------------------------------------------------
-##  MAIN EXECUTION: Specify Parameters and Run the Simulation
-#----------------------------------------------------------------------
 
 if __name__ == '__main__':
-    # *** Set the output folder name and simulation parameters here ***
-    output_folder = "data9"       # Folder name where data will be saved
-    nt          = 100           # Number of temperature points
-    n_list      = [16, 32, 64]       # List of lattice sizes (N x N)
-    eqSteps     = 1024*1000    # Number of Monte Carlo sweeps for equilibration
-    mcSteps     = 1024*1000          # Number of Monte Carlo sweeps for measurements
-    T_arr       = np.linspace(1.75, 2.75, nt)  # Temperature array
+
+    output_folder = "data10"       
+    nt          = 50             # Number of temperature points
+    n_list      = [16, 32, 64]    # List of lattice sizes 
+    eqSteps     = 1024 * 10     # Number of equilibration sweeps
+    mcSteps     = 1024 * 10    # Number of measurement sweeps
+    T_arr       = np.linspace(3.5, 5.5, nt)  # Temperature array
+    dim         = 3              
     
-    # Run the simulation with the specified parameters.
-    create_data(output_folder, nt, n_list, eqSteps, mcSteps, T_arr)
+    create_data(output_folder, nt, n_list, eqSteps, mcSteps, T_arr, dim)

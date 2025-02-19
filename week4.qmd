@@ -1,0 +1,14 @@
+# Week 4
+
+
+## Morning Meeting
+    - talked about finding errors 
+    - quick check on the right direction
+
+## Coding Plan 
+    - function to import data in format for plotting/calculation
+    - binder function that calculates the intersections between interpolating functions
+    - plotting function that zooms in near the intersection and adds the binder intersections
+    - plotting function that takes binder intersection temperatures and plots them with their associated system size ratio 
+    - critical exponents log-log graphs
+    - configure the code generation for susceplitibility and heat capacity

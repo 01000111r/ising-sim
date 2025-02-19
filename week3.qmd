@@ -25,7 +25,7 @@
     - understand how to extract kurtosis efficiently for different temperatures
     - get to a plot of kurtosis vs temperature with different size systems
 
-##Coding work
+## Coding work
     - reworked the main code to simulate for different sizes of system --> different temperatures
     - used namba to speed up alot of functions
     - created plotting functions

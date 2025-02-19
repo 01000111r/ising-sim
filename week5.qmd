@@ -1,0 +1,57 @@
+# Week 5
+
+
+## Morning Meeting
+    - Report
+        - talking report structure
+        - blackboard latex template
+        - how to find references
+        - zotero
+        - zotero overleaf
+    - Code 
+        - make sure graphs look good in report
+        - explore Renormalisation
+
+
+## Potential To-do's
+    - make sure error bars are valid
+    - read through book and try to code 3x3 renormalisation graph
+    - show errors decrease with run time, large N has higher error right now
+    - create plan for writeup (probably do first to orient other avenues)
+    - other Ideas  
+        - extend to xy model, 3d model
+        - implement other resampling methods (e.g. jackknife)
+        - cluster algorithms to explore closer to critical temp
+        - explore different lattice geometries
+
+    Error handling
+    - made sure all errors was plotted
+        - took mean and standard error from time series of magnetisation and energy for each temperature
+        - used those errors and propogated for the binder cumulant
+        - 
+
+
+## Write up Plan
+    - Introduction (1/2 page)
+        - Background and Motivation
+            - Phase transition/critcality ---> Ising Model
+    - Theory (1 1/2 page)
+        - Ising Model
+        - Behavior at critical temperature
+        - critical exponents
+        - need for numerical simulation
+    - Methods (1/2 page)
+        - Algorithmic details (Metropolis Algorithm)
+        - Error analysis 
+        - Binder cumulant to find Critical temperature
+        - Using critical temperature to extract critical exponents
+    - Results (1 page)
+        - Observables analysis
+        - Binder Cumulant analysis
+        - Critical Exponents analysis  
+        - Error vs temperature analysis
+    - Conclusion
+        -?
+    - Bibliogrphy
+
+
