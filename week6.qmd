@@ -1,0 +1,73 @@
+# Week 6
+
+
+## Morning Meeting
+    - Narrative
+        -what is the ising model?
+            - 
+        -why is it interesting
+            -phase transition as temperature varied - spontaneous change
+                - what is phase transition
+                    - order parameter
+                - what is second order phase transition
+                - critical temperature
+                    - universality near critical temp
+                -critical exponents
+        - quantitative explanation of above
+        - Ising model
+            - Hamiltonian
+            - Partition function
+            - Observables ---> derivations
+        - Methods
+            - Observables...
+            - Metropolis
+            - Cluster Algorithm
+            - Binder Cumulant - Critical Temp
+            - Critical Exponents
+        - Results
+            - Magnetisation vs iteration (wolfs vs metropolis)
+            - Binder cumulant 
+            - Critical Exponents
+                - magnetisation
+                - susceplitibility
+                - specific temperature
+                - correlation function
+        - Conclusion
+
+## Research and writing
+    - refining plan and researching literature
+    - General 
+        - Monte Carlo [Binder textbook](https://www.eng.uc.edu/~beaucag/Classes/AdvancedMaterialsThermodynamics/Books/David%20P.%20Landau,%20Kurt%20Binder%20-%20A%20Guide%20to%20Monte%20Carlo%20Simulations%20in%20Statistical%20Physics%20(2014,%20Cambridge%20University%20Press)%20-%20libgen.lc.pdf)
+        - ising model concerned with the physics of phase transitions
+        - phase transitions occur when a small change in a physical parameter causes a large scale change in the system
+            - water freezing at certain temperature
+            - spontaneous magnetisation - Ising model original purpose 
+        - ising model seeks to describe how short range behaviour gives rise to large scale behaviour
+            - general mathematical model for this concept
+                - universality near critical temperature 
+    - Ising Model
+        - to investigate behaviour will approach it in the context of ferromagnetism and the mathematics of statistical Mechanics
+        - site has spin up or down
+        - Hamiltonian
+            - measures energy of whole system, assumes only nearest-neighbour interaction contribute to energy
+        -Partition function
+            - 1d mean field theory
+            - Observables --> critical exponents
+        - 2^N calculation motivate statisctical maethods below
+    - Methods
+        - Monte Carlo
+        - Metropolis
+        - Cluster algorithm
+        - Binder parameter --> critical temperature
+        - use critical temperature to get critical exponents
+    - Results
+        - Magnetisation graph (with analytical) and algorithm speed up 
+        - phase diagram mag suc vs vs temp 
+        - Binder cumulant and critical temperature comparison 
+        - Critical exponents 2d and 3d
+            - multi-graph?
+        - errors
+    - Conclusion
+          ;
+
+

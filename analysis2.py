@@ -454,7 +454,7 @@ def plot_observable_errors(observables_data):
     plt.show()
 
 if __name__ == "__main__":
-    folder = "data10"
+    folder = "data8"
     params_filepath = os.path.join(folder, "simulation_parameters.npz")
     if os.path.exists(params_filepath):
         params = np.load(params_filepath)
@@ -476,8 +476,8 @@ if __name__ == "__main__":
     analysis_data = load_analysis(folder=folder, sizes=n_list)
     plot_binder_values(analysis_data)
     intersections = calculate_all_intersections(analysis_data)
-    # save_intersections(intersections, filename="critical_intersections.npz")
-    plot_all_intersections(analysis_data, intersections, zoom_margin=0.005, custom_T_low=3.5, custom_T_high=4.5)
+    # save_intersections(intersections, filename="critical_intersections.npz"), 2D 2.25-2.27
+    plot_all_intersections(analysis_data, intersections, zoom_margin=0.005, custom_T_low=2.25, custom_T_high=2.27)
     critical_temps, ref_size = calculate_critical_temperatures(analysis_data)
     plot_critical_temperatures(critical_temps, ref_size)
     observables_data = load_observables(input_folder=folder, sizes=n_list)
