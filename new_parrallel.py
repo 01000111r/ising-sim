@@ -1,0 +1,479 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Feb 27 13:05:14 2025
+
+@author: gianc
+"""
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+from __future__ import division
+import numpy as np
+from numba import njit
+import math
+import os
+import multiprocessing as mp
+from functools import partial
+import time
+
+# Initialise state
+def initialstate(N, dim, model, T):
+    """
+    Generates a spin configuration.
+    For T < Tc, we initialize in an ordered state to reduce equilibration time.
+    For T > Tc, we initialize in a random state for faster exploration.
+    """
+    if model == 'ising':
+        # For Ising model, use ordered state (all +1) for T < 2.0, random state otherwise
+        # This helps with equilibration
+        if T < 2.0:  # Below critical temperature
+            if dim == 2:
+                return np.ones((N, N), dtype=np.int8)
+            elif dim == 3:
+                return np.ones((N, N, N), dtype=np.int8)
+        else:  # Above critical temperature
+            if dim == 2:
+                return 2 * np.random.randint(0, 2, size=(N, N), dtype=np.int8) - 1
+            elif dim == 3:
+                return 2 * np.random.randint(0, 2, size=(N, N, N), dtype=np.int8) - 1
+    else:
+        raise ValueError("Model must be 'ising'")
+
+# Metropolis Algorithms
+@njit
+def mcmove2d(config, beta, N, model, delta):
+    """
+    One sweep of local Metropolis moves on a 2D lattice.
+    model: 0=ising, 1=xy, 2=heisenberg.
+    """
+    num_moves = N * N
+    for k in range(num_moves):
+        i = np.random.randint(0, N)
+        j = np.random.randint(0, N)
+        r = np.random.random()
+        if model == 0:
+            s = config[i, j]
+            nb = (config[(i+1)%N, j] + config[(i-1)%N, j] +
+                  config[i, (j+1)%N] + config[i, (j-1)%N])
+            cost = 2 * s * nb
+            if cost < 0 or r < math.exp(-beta * cost):
+                config[i, j] = -s
+    return config
+
+@njit
+def mcmove3d(config, beta, N, model, delta):
+    """
+    One sweep of local Metropolis moves on a 3D lattice.
+    """
+    num_moves = N * N * N
+    for k in range(num_moves):
+        x = np.random.randint(0, N)
+        y = np.random.randint(0, N)
+        z = np.random.randint(0, N)
+        r = np.random.random()
+        if model == 0:
+            s = config[x, y, z]
+            nb = (config[(x+1)%N, y, z] + config[(x-1)%N, y, z] +
+                  config[x, (y+1)%N, z] + config[x, (y-1)%N, z] +
+                  config[x, y, (z+1)%N] + config[x, y, (z-1)%N])
+            cost = 2 * s * nb
+            if cost < 0 or r < math.exp(-beta * cost):
+                config[x, y, z] = -s
+    return config
+
+# Wolf Cluster Algorithms 2D
+@njit
+def wolff_update_2d_ising(config, beta, N):
+    """
+    Wolff cluster update for 2D Ising model.
+    The implementation creates and flips a single cluster.
+    """
+    # Handle the T=0 case explicitly to avoid division by zero
+    if beta > 1e6:  # For very low temperatures
+        return config  # At T=0, no spins flip
+    
+    # Create array to store sites to be flipped (cluster membership)
+    cluster = np.zeros((N, N), dtype=np.int8)
+    
+    # Create stack to store site coordinates to be searched
+    stack = np.empty((N*N, 2), dtype=np.int64)
+    # Pointer for number of sites left to search
+    stack_ptr = 0
+    
+    # Pick a random site 
+    i = np.random.randint(0, N)
+    j = np.random.randint(0, N)
+    
+    # Get the original spin value
+    s0 = config[i, j]
+    
+    # Flip the seed spin
+    config[i, j] = -s0
+    
+    # Mark as part of cluster and add to stack
+    cluster[i, j] = 1
+    stack[0, 0] = i
+    stack[0, 1] = j
+    stack_ptr = 1
+    
+    # Probability of adding a neighbor to the cluster
+    p_add = 1.0 - math.exp(-2.0 * beta)
+
+    # Grow the cluster
+    while stack_ptr > 0:
+        stack_ptr -= 1
+        # Retrieve next site coordinates
+        i = stack[stack_ptr, 0]
+        j = stack[stack_ptr, 1]
+        
+        # For each neighbor:
+        for di, dj in ((1,0), (-1,0), (0,1), (0,-1)):
+            ni = (i + di) % N
+            nj = (j + dj) % N
+            
+            # If neighbor is not yet in the cluster and has the same spin as the original seed:
+            if cluster[ni, nj] == 0 and config[ni, nj] == s0:
+                # Add neighbor with probability p_add
+                if np.random.random() < p_add:
+                    # Flip the neighbor to the opposite of the seed
+                    config[ni, nj] = -s0
+                    
+                    # Mark as part of cluster and add to stack
+                    cluster[ni, nj] = 1
+                    stack[stack_ptr, 0] = ni
+                    stack[stack_ptr, 1] = nj
+                    stack_ptr += 1
+                    
+    return config
+
+# 3D Cluster Updates
+@njit
+def wolff_update_3d_ising(config, beta, N):
+    """
+    Wolff cluster update for 3D Ising model.
+    """
+    # Handle the T=0 case explicitly to avoid division by zero
+    if beta > 1e6:  # For very low temperatures
+        return config  # At T=0, no spins flip
+    
+    # Create array to store sites to be flipped (cluster membership)
+    cluster = np.zeros((N, N, N), dtype=np.int8)
+    
+    # Create stack to store site coordinates to be searched
+    stack = np.empty((N*N*N, 3), dtype=np.int64)
+    stack_ptr = 0
+    
+    # Pick a random site
+    x = np.random.randint(0, N)
+    y = np.random.randint(0, N)
+    z = np.random.randint(0, N)
+    
+    # Get the original spin value
+    s0 = config[x, y, z]
+    
+    # Flip the seed spin
+    config[x, y, z] = -s0
+    
+    # Mark seed as in the cluster and add to stack
+    cluster[x, y, z] = 1
+    stack[0, 0] = x
+    stack[0, 1] = y
+    stack[0, 2] = z
+    stack_ptr = 1
+    
+    # Probability of adding a neighbor to the cluster
+    p_add = 1.0 - math.exp(-2.0 * beta)
+    
+    # Grow the cluster
+    while stack_ptr > 0:
+        stack_ptr -= 1
+        x = stack[stack_ptr, 0]
+        y = stack[stack_ptr, 1]
+        z = stack[stack_ptr, 2]
+        
+        # Iterate over the six nearest neighbors in 3D
+        for dx, dy, dz in ((1,0,0), (-1,0,0), (0,1,0), (0,-1,0), (0,0,1), (0,0,-1)):
+            nx = (x + dx) % N
+            ny = (y + dy) % N
+            nz = (z + dz) % N
+            
+            # If neighbor is not yet in cluster and has same spin as original seed
+            if cluster[nx, ny, nz] == 0 and config[nx, ny, nz] == s0:
+                if np.random.random() < p_add:
+                    # Flip neighbor to opposite of seed
+                    config[nx, ny, nz] = -s0
+                    
+                    # Mark as part of cluster and add to stack
+                    cluster[nx, ny, nz] = 1
+                    stack[stack_ptr, 0] = nx
+                    stack[stack_ptr, 1] = ny
+                    stack[stack_ptr, 2] = nz
+                    stack_ptr += 1
+                    
+    return config
+
+@njit
+def wolff_update_2d(config, beta, N, model):
+    if model == 0:
+        return wolff_update_2d_ising(config, beta, N)
+    
+@njit
+def wolff_update_3d(config, beta, N, model):
+    if model == 0:
+        return wolff_update_3d_ising(config, beta, N)
+
+# ==========================================================
+# COMBINED MEASUREMENTS (energy, magnetisation, correlation)
+# ==========================================================
+@njit
+def measure2d_all(config, N, model):
+    """
+    Measures energy, magnetization, and correlation function for 2D lattice.
+    Returns the raw values - normalization happens later.
+    """
+    R = N // 2
+    energy = 0.0
+    if model == 0:
+        mag = 0.0
+        corr = np.zeros(R+1, dtype=np.float64)
+        # Loop over all lattice sites once.
+        for i in range(N):
+            for j in range(N):
+                S = config[i, j]
+                # Energy from right and down neighbors (periodic BCs)
+                energy += -S * (config[i, (j+1)%N] + config[(i+1)%N, j])
+                mag += S
+                # Update correlation for displacements r along the i-direction.
+                for r in range(R+1):
+                    corr[r] += S * config[(i+r)%N, j]
+        # Normalize correlation (each r gets N*N contributions)
+        norm = N * N
+        for r in range(R+1):
+            corr[r] /= norm
+        return energy, mag, corr
+
+@njit
+def measure3d_all(config, N, model):
+    """
+    Measures energy, magnetization, and correlation function for 3D lattice.
+    """
+    R = N // 2
+    energy = 0.0
+    if model == 0:
+        mag = 0.0
+        corr = np.zeros(R+1, dtype=np.float64)
+        for x in range(N):
+            for y in range(N):
+                for z in range(N):
+                    S = config[x, y, z]
+                    energy += -S * (config[(x+1)%N, y, z] +
+                                    config[x, (y+1)%N, z] +
+                                    config[x, y, (z+1)%N])
+                    mag += S
+                    # Correlation along the x-direction (for each displacement r)
+                    for r in range(R+1):
+                        corr[r] += S * config[(x+r)%N, y, z]
+        norm = N * N * N
+        for r in range(R+1):
+            corr[r] /= norm
+        return energy, mag, corr
+
+# ==========================================================
+# MEASUREMENT OF CONNECTED CORRELATION
+# ==========================================================
+@njit
+def compute_connected_correlation(corr, mag, N, dim):
+    """
+    Converts raw correlation to connected correlation function.
+    C_conn(r) = <S(0)S(r)> - <S>²
+    """
+    R = len(corr) - 1
+    m_squared = (mag / (N**dim))**2
+    connected_corr = np.zeros_like(corr)
+    
+    for r in range(R+1):
+        connected_corr[r] = corr[r] - m_squared
+        
+    return connected_corr
+
+# ==========================================================
+# SIMULATION ROUTINE
+# ==========================================================
+def run_simulation(config, beta, eqSteps, mcSteps, N, dim, model, delta, update_type):
+    """
+    Runs equilibration then measurement sweeps with adaptive cluster update count.
+    """
+    # Convert model to numeric code: 0=ising
+    if model == 'ising':
+        mcode = 0
+    else:
+        raise ValueError("Unknown model")
+    
+
+    # Equilibration:
+    for _ in range(eqSteps):
+        if update_type == 'local':
+            if dim == 2:
+                mcmove2d(config, beta, N, mcode, delta)
+            else:
+                mcmove3d(config, beta, N, mcode, delta)
+        elif update_type == 'cluster':
+
+            if dim == 2:
+                wolff_update_2d(config, beta, N, mcode)
+            else:
+                wolff_update_3d(config, beta, N, mcode)
+    
+    # Measurement:
+    m_i = np.empty(mcSteps, dtype=np.float64)
+    e_i = np.empty(mcSteps, dtype=np.float64)
+    R = N // 2
+    corr_sum = np.zeros(R+1, dtype=np.float64)
+    
+    for i in range(mcSteps):
+        if update_type == 'local':
+            if dim == 2:
+                mcmove2d(config, beta, N, mcode, delta)
+            else:
+                mcmove3d(config, beta, N, mcode, delta)
+        elif update_type == 'cluster':
+            # Multiple cluster updates to reduce autocorrelation
+
+            if dim == 2:
+                wolff_update_2d(config, beta, N, mcode)
+            else:
+                wolff_update_3d(config, beta, N, mcode)
+        
+        if dim == 2:
+            e, m, corr = measure2d_all(config, N, mcode)
+        else:
+            e, m, corr = measure3d_all(config, N, mcode)
+        
+        e_i[i] = e
+        m_i[i] = m
+        corr_sum += corr
+    
+    corr_avg = corr_sum / mcSteps
+    
+    # Calculate connected correlation function
+    avg_mag = np.mean(m_i)
+    connected_corr = compute_connected_correlation(corr_avg, avg_mag, N, dim)
+    
+    return m_i, e_i, corr_avg, connected_corr
+
+# ==========================================================
+# SIMULATION WRAPPER (for multiprocessing)
+# ==========================================================
+def simulate_temp(args, output_folder, dim, model, delta, update_type):
+    """
+    Runs simulation for given N and T_value and saves data.
+    """
+    N, T_value, eqSteps, mcSteps = args
+    
+    # Handle T=0 case
+    if T_value < 0.01:
+        T_value = 0.01  # Prevent division by zero
+    
+    beta = 1.0 / T_value
+    
+    # Smart initialization based on temperature
+    config = initialstate(N, dim, model, T_value)
+
+    m_i, e_i, corr_avg, connected_corr = run_simulation(config, beta, eqSteps, mcSteps, N, dim, model, delta, update_type)
+
+ 
+    filename = os.path.join(output_folder, f"run-T{T_value:.3f}N{N}D{dim}-{model}-{update_type}.npz")
+    np.savez(filename,
+             energy=e_i,
+             magnetisation=m_i,
+             correlation=corr_avg,
+             connected_correlation=connected_corr,)
+    
+    return T_value, N, m_i, e_i, corr_avg
+
+# ==========================================================
+# DATA CREATION LOOP
+# ==========================================================
+def create_data(output_folder, nt, n_list, eqSteps, mcSteps, T_arr, dim, model, delta, update_type):
+    if os.path.exists(output_folder):
+        print(f"Folder '{output_folder}' already exists.")
+    else:
+        os.makedirs(output_folder)
+    
+    # Fix T=0 to avoid division by zero
+    T_arr = np.copy(T_arr)
+    T_arr[T_arr < 0.01] = 0.01
+    
+    params_filepath = os.path.join(output_folder, "simulation_parameters.npz")
+    np.savez(params_filepath,
+             nt=nt,
+             n_list=np.array(n_list),
+             eqSteps=eqSteps,
+             mcSteps=mcSteps,
+             T_arr=T_arr,
+             dim=dim,
+             model=model,
+             delta=delta,
+             update_type=update_type)
+    print(f"Simulation parameters saved to {params_filepath}")
+    
+    # First simulate critical region with higher priority
+    Tc = 2.269 if dim == 2 else 4.51
+    critical_tasks = []
+    normal_tasks = []
+    
+    for N in n_list:
+        for T_val in T_arr:
+            if abs(T_val - Tc) < 0.5:
+                critical_tasks.append((N, T_val, eqSteps, mcSteps))
+            else:
+                normal_tasks.append((N, T_val, eqSteps, mcSteps))
+    
+    all_tasks = critical_tasks + normal_tasks
+    total_tasks = len(all_tasks)
+    completed_tasks = 0
+    
+    # Increase number of processes based on available CPU cores
+    num_processes = mp.cpu_count()
+    print(f"Using {num_processes} CPU cores for parallel processing")
+    
+    pool = mp.Pool(processes=8)
+    sim_func = partial(simulate_temp, output_folder=output_folder, dim=dim, model=model, delta=delta, update_type=update_type)
+    
+    for result in pool.imap_unordered(sim_func, all_tasks):
+        completed_tasks += 1
+        print(f"Progress: {completed_tasks}/{total_tasks} simulations completed.")
+    
+    pool.close()
+    pool.join()
+
+
+
+# ==========================================================
+# MAIN EXECUTION
+# ==========================================================
+if __name__ == '__main__':
+    output_folder = "metropolis1"
+
+    nt          = 1                    # Number of temperature points (reduced for efficiency)
+    n_list      = [32]      # Lattice sizes
+    eqSteps     = 1024 * 100             # Equilibration sweeps (reduced)
+    mcSteps     = 1024 * 100            # Measurement sweeps (reduced)
+    
+    # Focus more points near the critical temperature
+    # T_low = np.linspace(0.5, 1.8, nt//4)
+    # T_crit = np.linspace(1.9, 2.6, nt//2)  # More points near critical point
+    # T_high = np.linspace(2.7, 4.0, nt//4)
+    # T_arr = np.concatenate([T_low, T_crit, T_high])
+    
+    #T_arr = np.linspace(2.1, 2.5, nt)
+    T_arr = [2.275]
+    
+    dim         = 2                       # 2 or 3
+    model       = 'ising'                 # 'ising', 'xy', or 'heisenberg'
+    delta       = 0.3                     # For local moves (not used in cluster)
+    update_type = 'local'               # Choose 'local' or 'cluster'
+    
+    create_data(output_folder, nt, n_list, eqSteps, mcSteps, T_arr, dim, model, delta, update_type)
+    
