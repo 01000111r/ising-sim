@@ -96,6 +96,8 @@ def compute_analysis(input_folder, output_folder, sizes):
             e_err = e_std / np.sqrt(n_e)
             
             #Susceptibility and specific heat calculations
+            if T == 0:
+                continue
             beta = 1.0 / T
             
             sus_val = beta * (m2 - m_mean**2)
@@ -454,7 +456,7 @@ def plot_observable_errors(observables_data):
     plt.show()
 
 if __name__ == "__main__":
-    folder = "data8"
+    folder = "data20_3d_ising_sparse_"
     params_filepath = os.path.join(folder, "simulation_parameters.npz")
     if os.path.exists(params_filepath):
         params = np.load(params_filepath)

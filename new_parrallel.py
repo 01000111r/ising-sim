@@ -15,7 +15,7 @@ import math
 import os
 import multiprocessing as mp
 from functools import partial
-import time
+
 
 # Initialise state
 def initialstate(N, dim, model, T):
@@ -223,9 +223,11 @@ def wolff_update_3d(config, beta, N, model):
     if model == 0:
         return wolff_update_3d_ising(config, beta, N)
 
-# ==========================================================
-# COMBINED MEASUREMENTS (energy, magnetisation, correlation)
-# ==========================================================
+
+
+#measurements
+
+
 @njit
 def measure2d_all(config, N, model):
     """
@@ -279,9 +281,6 @@ def measure3d_all(config, N, model):
             corr[r] /= norm
         return energy, mag, corr
 
-# ==========================================================
-# MEASUREMENT OF CONNECTED CORRELATION
-# ==========================================================
 @njit
 def compute_connected_correlation(corr, mag, N, dim):
     """
@@ -297,9 +296,10 @@ def compute_connected_correlation(corr, mag, N, dim):
         
     return connected_corr
 
-# ==========================================================
-# SIMULATION ROUTINE
-# ==========================================================
+
+#SIMULATION
+
+
 def run_simulation(config, beta, eqSteps, mcSteps, N, dim, model, delta, update_type):
     """
     Runs equilibration then measurement sweeps with adaptive cluster update count.
@@ -338,7 +338,7 @@ def run_simulation(config, beta, eqSteps, mcSteps, N, dim, model, delta, update_
             else:
                 mcmove3d(config, beta, N, mcode, delta)
         elif update_type == 'cluster':
-            # Multiple cluster updates to reduce autocorrelation
+            
 
             if dim == 2:
                 wolff_update_2d(config, beta, N, mcode)
@@ -356,15 +356,16 @@ def run_simulation(config, beta, eqSteps, mcSteps, N, dim, model, delta, update_
     
     corr_avg = corr_sum / mcSteps
     
-    # Calculate connected correlation function
+
     avg_mag = np.mean(m_i)
     connected_corr = compute_connected_correlation(corr_avg, avg_mag, N, dim)
     
     return m_i, e_i, corr_avg, connected_corr
 
-# ==========================================================
-# SIMULATION WRAPPER (for multiprocessing)
-# ==========================================================
+
+
+# multiprocessor wrapper
+
 def simulate_temp(args, output_folder, dim, model, delta, update_type):
     """
     Runs simulation for given N and T_value and saves data.
@@ -392,16 +393,20 @@ def simulate_temp(args, output_folder, dim, model, delta, update_type):
     
     return T_value, N, m_i, e_i, corr_avg
 
-# ==========================================================
-# DATA CREATION LOOP
-# ==========================================================
+
+
+
+# MAIN LOOP
+
+
+
 def create_data(output_folder, nt, n_list, eqSteps, mcSteps, T_arr, dim, model, delta, update_type):
     if os.path.exists(output_folder):
         print(f"Folder '{output_folder}' already exists.")
     else:
         os.makedirs(output_folder)
     
-    # Fix T=0 to avoid division by zero
+
     T_arr = np.copy(T_arr)
     T_arr[T_arr < 0.01] = 0.01
     
@@ -418,7 +423,7 @@ def create_data(output_folder, nt, n_list, eqSteps, mcSteps, T_arr, dim, model, 
              update_type=update_type)
     print(f"Simulation parameters saved to {params_filepath}")
     
-    # First simulate critical region with higher priority
+    
     Tc = 2.269 if dim == 2 else 4.51
     critical_tasks = []
     normal_tasks = []
